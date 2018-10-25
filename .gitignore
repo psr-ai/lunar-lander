@@ -4,3 +4,4 @@
 /documentation/**/*.aux
 /documentation/**/*.synctex.gz
 /documentation/**/*.pdf
+/**/*.pyc
