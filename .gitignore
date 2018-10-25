@@ -1,1 +1,6 @@
 /.idea
+
+/documentation/**/*.log
+/documentation/**/*.aux
+/documentation/**/*.synctex.gz
+/documentation/**/*.pdf
