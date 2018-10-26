@@ -10,18 +10,14 @@
 {\Large Lunar Landing}
 
 \begin{tabular}{rl}
-SUNet ID: & [your SUNet ID] \\
-Name: & [your first and last name] \\
-Collaborators: & [list all the people you worked with]
+Collaborators: & Amey Naik ,Prabhjyot Singh Rai, Abhishek Bharani
 \end{tabular}
 \end{center}
 
 
-\bibliography{biblio}
-\bibliographystyle{abbrv}
 \section{Introduction}
 
-The purpose of this project is to build an AI agent to play Lunar Lander game to safely land on a landing pad. We will utilize different variants of DQN such as Double DQN, DQN with prioritize replay to solve this problem.Our goal is to obtain a policy that once followed by the agent, makes it capable of obtaining scores comparable to human playing  the game  (Oracle).
+The purpose of this project is to build an AI agent to play Lunar Lander game to safely land on a landing pad. We will utilize different variants of DQN such as Double DQN\citep{DoubleQ-learning}, DQN with prioritize replay\citep{PrioritizedReplay} , Dueling network architecture \citep{Dueling}, continuos action space \citep{Continuos} to solve this problem.Our goal is to obtain a policy that once followed by the agent, makes it capable of obtaining scores comparable to human playing  the game  (Oracle).
 
 \section{Problem Statement}
 Landing pad is always at coordinates (0,0). Coordinates are the first two numbers in state vector. Reward for moving from the top of the screen to landing pad and zero speed is about 100..140 points. If lander moves away from landing pad it loses reward back. Episode finishes if the lander crashes or comes to rest, receiving additional -100 or +100 points. Each leg ground contact is +10. Firing main engine is -0.3 points each frame. Solved is 200 points. Landing outside landing pad is possible. Fuel is infinite, so an agent can learn to fly and then land on its first attempt. Four discrete actions available: do nothing, fire left orientation engine, fire main engine, fire right orientation engine.
@@ -36,5 +32,8 @@ Comparable human playing score.
 \section{Metrics}
 We will measure the performance of agent by looking at the average rewards collected in a given number of episodes and the time it takes to obtain optimum states. There is leaderboard to compare the performance of our model against others.
 
+
+\bibliography{biblio}
+\bibliographystyle{abbrv}
 
 \end{document}
