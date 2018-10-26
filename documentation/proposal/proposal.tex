@@ -29,7 +29,13 @@ Landing pad is always at coordinates (0,0). Coordinates are the first two number
 \section{Baseline}
 We define multiple baselines for this problem in the increasing order of their performance:
 \begin{enumerate}[label=(\alph*)]
-\item Taking random actions multiple times till the lunar-lander lands. From the histogram shown below we can see that it never works [add image]
+\item Taking random actions multiple times till the lunar-lander lands. From the histogram shown below we can see that it never works.
+\newline
+\includegraphics[scale=0.3]{images/idle_action.png} \includegraphics[scale=0.3]{images/thrust_action.png}
+\includegraphics[scale=0.3]{images/rotate_anticlockwise_action.png} 
+\begin{center}
+\includegraphics[scale=0.3]{images/rotate_clockwise_action.png}\includegraphics[scale=0.3]{images/random-action-reward-plot.png}
+\end{center}
 \item Start with randomly picking an action for a new state that is explored, if the state gets explored in the episode ‘e1’, then in the next episode ‘e2’ if you encounter that state, pick the previously stored action for that state. Our baseline will be a greedy algorithm which will act to  fetch maximum rewards but does not account for future states and early convergence.
 \end{enumerate}
 
