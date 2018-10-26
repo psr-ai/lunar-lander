@@ -54,7 +54,7 @@ We can evaluate the performance of agent by comparing the score with the scores 
 
 \section{Challenges And Approach}
 
-Firstly, this problem has a very large state space, we can not expect a simple epsilon-greedy algorithm to explore everything in a reasonable amount of time. The next logical step is to apply Q-learning. This may help us take the best direction but may not provide a detailed planning. In general, it may not understand the game dynamics from a general point of view. By using function approximation, we can generalize well to unseen states. We are planning to explore variants of DQN, particularly DQN with prioritize replay\citep{PrioritizedReplay}, Double DQN\citep{DoubleQ-learning}, and Dueling network architecture \citep{Dueling} to solve this problem.
+Firstly, this problem has a very large state space, we can not expect a simple epsilon-greedy algorithm to explore everything in a reasonable amount of time. The next logical step is to apply Q-learning. This may help us take the best direction but may not provide a detailed planning. In general, it may not understand the game dynamics from a general point of view. By using function approximation, we can generalize well to unseen states. We are planning to explore variants of DQN, particularly DQN with prioritize replay\citep{PrioritizedReplay}, Double DQN\citep{DoubleQ-learning}, and Dueling network architecture\citep{Dueling} to solve this problem.
 
 \bibliography{biblio}
 \bibliographystyle{abbrv}
