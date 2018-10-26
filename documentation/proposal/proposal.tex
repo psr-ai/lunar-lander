@@ -49,12 +49,15 @@ We define multiple oracles for this problem in the increasing order of their per
 \item Maximum score that one can achieve which is 140 [reach landing pad]  + 100 [stopping without crashing] + 10*2 [each leg ground contact] + 200 [solving the episode]
 \end{enumerate}
 
-\section{Metrics}
-We can evaluate the performance of agent by comparing the score with the scores from the oracle and in least number of episodes. There is leader-board to compare how fast the learning is of our model against others.\citep{leaderboard}
+\section{Gap and Metrics}
+
+As it is evident that there is a huge gap between the oracle and the baseline, our approach would be to come as close to the maximum score as possible (even surpass human playing score). We can evaluate the performance of agent by comparing the score with the scores from the oracle and in least number of episodes. There is leader-board to compare how fast the learning is of our model against others.\citep{leaderboard}
 
 \section{Challenges And Approach}
 
-Firstly, this problem has a very large state space, we can not expect a simple epsilon-greedy algorithm to explore everything in a reasonable amount of time. The next logical step is to apply Q-learning. This may help us take the best direction but may not provide a detailed planning. In general, it may not understand the game dynamics from a general point of view. By using function approximation, we can generalize well to unseen states. We are planning to explore variants of DQN, particularly DQN with prioritize replay\citep{PrioritizedReplay}, Double DQN\citep{DoubleQ-learning}, and Dueling network architecture\citep{Dueling} to solve this problem.
+Firstly, this problem has a very large state space, we can not expect a simple epsilon-greedy algorithm to explore everything in a reasonable amount of time. The next logical step is to apply Q-learning. This may help us take the best direction but may not provide a detailed planning. In general, it may not understand the game dynamics from a general point of view. By using function approximation, we can generalize well to unseen states.
+
+We are planning to explore variants of DQN, particularly DQN with prioritize replay\citep{PrioritizedReplay}, Double DQN\citep{DoubleQ-learning}, and Dueling network architecture\citep{Dueling} to solve this problem.
 
 \bibliography{biblio}
 \bibliographystyle{abbrv}
