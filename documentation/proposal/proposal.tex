@@ -18,20 +18,25 @@ SU Net IDs: & ameynaik, prabhjot, abharani
 
 \section{Introduction}
 
-The purpose of this project is to build an AI agent to play Lunar Lander game to safely land on a landing pad. We are making use of Box2D Lunar Lander available on OpenAI gym. Landing pad is always at coordinates (0,0). Reward for reaching the landing pad is about 100 to 140 points, depending on the speed. If lander moves away from landing pad it loses reward back. Episode finishes if the lander crashes or comes to rest, receiving additional -100 or +100 points. Each leg ground contact is +10. Firing main engine is -0.3 points each frame. Solved is 200 points. Landing outside landing pad is possible. Fuel is infinite. Four discrete actions available: do nothing, fire left orientation engine, fire main engine, fire right orientation engine. Our state at any given frame is defined by 8 parameters: horizontal position (x-axis), vertical position (y-axis), orientation (theta), linear velocity (v), angular velocity (w), state of each landing leg (left and right). Moreover, our environment, which is the surface of the moon, keeps changing with each episode.
-\begin{center}
+\noindent\begin{minipage}{0.6\textwidth}
+The purpose of this project is to build an AI agent to play Lunar Lander game to safely land on a landing pad. We are making use of Box2D Lunar Lander available on OpenAI gym. Landing pad is always at coordinates (0,0). Reward for reaching the landing pad is about 100 to 140 points, depending on the speed. If lander moves away from landing pad it loses reward back. Episode finishes if the lander crashes or comes to rest, receiving additional -100 or +100 points. Each leg ground contact is +10. Firing main engine is -0.3 points each frame. Solved is 200 points.
+\end{minipage}
+\begin{minipage}{0.3\textwidth}\raggedleft
 \includegraphics[scale=0.3]{LunarLanderDemoImage.png}
-\end{center}
-
+\end{minipage}
+\\ \\
+Landing outside landing pad is possible. Fuel is infinite. Four discrete actions available: do nothing, fire left orientation engine, fire main engine, fire right orientation engine. Our state at any given frame is defined by 8 parameters: horizontal position (x-axis), vertical position (y-axis), orientation (theta), linear velocity (v), angular velocity (w), state of each landing leg (left and right). Moreover, our environment, which is the surface of the moon, keeps changing with each episode.
 
 \section{Baseline}
 We define multiple baselines:
 \begin{enumerate}[label=(\alph*)]
-\item Random Action Baseline: Taking random action at any given state out of the available actions. We see that in almost all the cases, we get negative rewards. In order to check if taking a single action may lead to the optimum, we saw that this policy performed even worse than taking random actions.
-\newline
-\begin{center}
+\item 
+\noindent\begin{minipage}{0.6\textwidth}
+Random Action Baseline: Taking random action at any given state out of the available actions. We see that in almost all the cases, we get negative rewards. In order to check if taking a single action may lead to the optimum, we saw that this policy performed even worse than taking random actions.
+\end{minipage}
+\begin{minipage}{0.3\textwidth}\raggedleft
 \includegraphics[scale=0.3]{images/random-action-reward-plot.png}
-\end{center}
+\end{minipage}
 \item Start with randomly picking an action for a new state that is explored, if the state gets explored in the episode ‘e1’, then in the next episode ‘e2’ if you encounter that state, pick the previously stored action for that state. Our baseline will be a greedy algorithm which will act to  fetch maximum rewards but does not account for future states and early convergence.
 \end{enumerate}
 
@@ -40,18 +45,13 @@ We define multiple baselines:
 We define multiple oracles for this problem in the increasing order of their performance and complexity:
 \begin{enumerate}[label=(\alph*)]
 \item Human playing score.
-\item Maximum score that one can achieve which is 140 [reach landing pad]  + 100 [stopping without crashing] + 10*(num legs) [each leg ground contact]
-\item For an agent - if the time-taken to learn and get an average score of 200, the oracle can be the score from the leaderboard available online for this game. [insert link]
+\item Maximum score that one can achieve which is 140 [reach landing pad]  + 100 [stopping without crashing] + 10*2 [each leg ground contact] + 200 [solving the episode]
 \end{enumerate}
 
 \section{Metrics}
-We will measure the performance of agent by looking at the average rewards collected in a given number of episodes and the time it takes to obtain optimum \textbf{states}???. There is leader-board to compare the performance of our model against others. \citep{leaderboard}
-\newline
- The number of episodes required to earn a minimum of 200+ points (on average), which is an indicator of how fast is the learning.\newline
-Also the max score we can achieve? (200-240)
+We can evaluate the performance of agent by comparing the score with the scores from the oracle and in least number of episodes. There is leader-board to compare how fast the learning is of our model against others. \citep{leaderboard}
 
-
-\section{Challenges}
+\section{Challenges And Approach}
 \begin{enumerate}[label=(\alph*)]
 \item How fast we learn i.e. with the least number of episodes. Need generalized features such that it doesn’t overfit for a particular episode. Reflex-based DNN will be used here.
 \item This problem has a very large state space (\textbf{fill this})MDP (state-based), RL (Q-learning, DQN) , DNN (reflex based)
