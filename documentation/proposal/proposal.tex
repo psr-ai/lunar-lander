@@ -22,6 +22,7 @@ SU Net IDs: & ameynaik, prabhjot, abharani
 The purpose of this project is to build an AI agent to play Lunar Lander game to safely land on a landing pad. We are making use of Box2D Lunar Lander available on OpenAI gym. Landing pad is always at coordinates (0,0). Reward for reaching the landing pad is about 100 to 140 points, depending on the speed. If lander moves away from landing pad it loses reward back. Episode finishes if the lander crashes or comes to rest, receiving additional -100 or +100 points. Each leg ground contact is +10. Firing main engine is -0.3 points each frame. Solved is 200 points.
 \end{minipage}
 \begin{minipage}{0.3\textwidth}\raggedleft
+\text{    Figure 1: Game Environment}
 \includegraphics[scale=0.3]{LunarLanderDemoImage.png}
 \end{minipage}
 \\ \\
@@ -52,10 +53,8 @@ We define multiple oracles for this problem in the increasing order of their per
 We can evaluate the performance of agent by comparing the score with the scores from the oracle and in least number of episodes. There is leader-board to compare how fast the learning is of our model against others. \citep{leaderboard}
 
 \section{Challenges And Approach}
-\begin{enumerate}[label=(\alph*)]
-\item How fast we learn i.e. with the least number of episodes. Need generalized features such that it doesn’t overfit for a particular episode. Reflex-based DNN will be used here.
-\item This problem has a very large state space (\textbf{fill this})MDP (state-based), RL (Q-learning, DQN) , DNN (reflex based)
-\end{enumerate}
+
+Firstly, this problem has a very large state space, we can not expect a simple epsilon-greedy algorithm to explore everything in a reasonable amount of time. The next logical step is to apply Q-learning. This may help us take the best direction but may not provide a detailed planning. In general, it may not understand the game dynamics from a general point of view. By using function approximation, we can generalize well to unseen states. Reflex-based DNN(DQN) will be used by us to approach this problem, particularly different variants of DQN such as DQN with prioritize replay\citep{PrioritizedReplay}, Double DQN\citep{DoubleQ-learning}, and Dueling network architecture \citep{Dueling} to solve this problem.
 
 \bibliography{biblio}
 \bibliographystyle{abbrv}
