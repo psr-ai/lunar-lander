@@ -19,7 +19,7 @@ SU Net IDs: & ameynaik, prabhjot, abharani
 \section{Introduction}
 
 \noindent\begin{minipage}{0.6\textwidth}
-The purpose of this project is to build an AI agent to play Lunar Lander game to safely land on a landing pad. We are making use of Box2D Lunar Lander available on OpenAI gym. Landing pad is always at coordinates (0,0). Reward for reaching the landing pad is about 100 to 140 points, depending on the speed. If lander moves away from landing pad it loses reward back. Episode finishes if the lander crashes or comes to rest, receiving additional -100 or +100 points. Each leg ground contact is +10. Firing main engine is -0.3 points each frame. Solved is 200 points.
+The purpose of this project is to build an AI agent to play Lunar Lander game to safely land on a landing pad. We are making use of Box2D Lunar Lander available on OpenAI gym\citep{openai}. Landing pad is always at coordinates (0,0). Reward for reaching the landing pad is about 100 to 140 points, depending on the speed. If lander moves away from landing pad it loses reward back. Episode finishes if the lander crashes or comes to rest, receiving additional -100 or +100 points. Each leg ground contact is +10. Firing main engine is -0.3 points each frame. Solved is 200 points.
 \end{minipage}
 \begin{minipage}{0.3\textwidth}\raggedleft
 \text{    Figure 1: Game Environment}
@@ -50,7 +50,7 @@ We define multiple oracles for this problem in the increasing order of their per
 \end{enumerate}
 
 \section{Metrics}
-We can evaluate the performance of agent by comparing the score with the scores from the oracle and in least number of episodes. There is leader-board to compare how fast the learning is of our model against others. \citep{leaderboard}
+We can evaluate the performance of agent by comparing the score with the scores from the oracle and in least number of episodes. There is leader-board to compare how fast the learning is of our model against others.\citep{leaderboard}
 
 \section{Challenges And Approach}
 
