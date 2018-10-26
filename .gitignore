@@ -6,3 +6,5 @@
 /documentation/**/*.synctex.gz
 /documentation/**/*.pdf
 /**/*.pyc
+/**/*.bbl
+/**/*.blg
