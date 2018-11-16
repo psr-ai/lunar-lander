@@ -1,0 +1,11 @@
+\section{Introduction}
+\label{intro}
+
+We used reinforcement learning techniques to train an AI agent to play Lunar Lander v2. Current research in the field includes using the images for states and deep reinforcement learning to train the AI agent. This approach will generally have the pixels of each image and the game score as inputs.
+
+
+\subsection{Goal}
+
+Obtain a policy that once followed by agent made it capable of landing a space vehicle into landing pad region with speed close to 0(soft landing). Rewards is a combination of how much is the speed of lander (close to 0) , how close is the landing pad, every time a we fire engine there is negative reward of 0.3 per frame.  The state space is a 8 dimensional and number of actions we can take are 4 [do noting, fire left, fire right, fire main engine].
+
+We are proposing to use Q-learning to solve this descrete state space problem. We will be implementing different variants of Deep Q Network (DQN) to predict the actions given current state.
