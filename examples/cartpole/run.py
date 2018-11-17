@@ -150,16 +150,17 @@ for e in range(n_episodes):
     state = env.reset()
     state = np.reshape(state, [1, state_size])
     is_end = False
-    reward = 0
+    total_reward = 0
     while not is_end:
         action = agent.act(state)
         next_state, reward, is_end, _ = env.step(action)
+        total_reward += reward
         next_state = np.reshape(next_state, [1, state_size])
         agent.remember(state, action, reward, next_state, is_end)
         state = next_state
         if is_end:
             print("episode: {}/{}, reward: {}, e: {:.2}"
-                  .format(e, n_episodes, reward, agent.epsilon))
+                  .format(e, n_episodes, total_reward, agent.epsilon))
             break  # exit loop
     if len(agent.memory) > batch_size:
         agent.replay(batch_size)
