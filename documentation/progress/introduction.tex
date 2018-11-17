@@ -1,10 +1,15 @@
 \section{Introduction}
 \label{intro}
-
+The purpose of this project is to build an AI agent to play Lunar Lander game to safely land on a landing pad. We will utilize different variants of DQN such as Double DQN\citep{DoubleQ-learning}, DQN with prioritize replay\citep{PrioritizedReplay} , Dueling network architecture \citep{Dueling}, continuos action space \citep{Continuos} to solve this problem.Our goal is to obtain a policy that once followed by the agent, makes it capable of obtaining scores comparable to human playing  the game  (Oracle).
 We used reinforcement learning techniques to train an AI agent to play Lunar Lander v2. Current research in the field includes using the images for states and deep reinforcement learning to train the AI agent. This approach will generally have the pixels of each image and the game score as inputs.
 
 
-\subsection{Goal}
+\section{Problem Statement}
+Landing pad is always at coordinates (0,0). Coordinates are the first two numbers in state vector. Reward for moving from the top of the screen to landing pad and zero speed is about 100..140 points. If lander moves away from landing pad it loses reward back. Episode finishes if the lander crashes or comes to rest, receiving additional -100 or +100 points. Each leg ground contact is +10. Firing main engine is -0.3 points each frame. Solved is 200 points. Landing outside landing pad is possible. Fuel is infinite, so an agent can learn to fly and then land on its first attempt. Four discrete actions available: do nothing, fire left orientation engine, fire main engine, fire right orientation engine.
+
+
+
+\section{Goal}
 
 Obtain a policy that once followed by agent made it capable of landing a space vehicle into landing pad region with speed close to 0(soft landing). Rewards is a combination of how much is the speed of lander (close to 0) , how close is the landing pad, every time a we fire engine there is negative reward of 0.3 per frame.  The state space is a 8 dimensional and number of actions we can take are 4 [do noting, fire left, fire right, fire main engine].
 
