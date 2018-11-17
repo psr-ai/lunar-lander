@@ -1,16 +1,65 @@
-\section{Introduction}
+\section{Introduction to choice of model and algorithm}
 \label{intro}
-The purpose of this project is to build an AI agent to play Lunar Lander game to safely land on a landing pad. We will utilize different variants of DQN such as Double DQN\citep{DoubleQ-learning}, DQN with prioritize replay\citep{PrioritizedReplay} , Dueling network architecture \citep{Dueling}, continuos action space \citep{Continuos} to solve this problem.Our goal is to obtain a policy that once followed by the agent, makes it capable of obtaining scores comparable to human playing  the game  (Oracle).
-We used reinforcement learning techniques to train an AI agent to play Lunar Lander v2. Current research in the field includes using the images for states and deep reinforcement learning to train the AI agent. This approach will generally have the pixels of each image and the game score as inputs.
+Since no data is provided as in supervised or unsupervised learning, there is only an environment which the agent can investigate to collect data. At any time frame, the lunar lander can be imagined at a state defined by eight features with four discrete actions available. Hence, due to above reasons and uncertainty after taking a discrete action, this problem can be modelled as a Markov Decision Process(MDP) with unknown rewards and transition probabilities, which can be targeted using Reinforcement Learning algorithms. \\
+
+Since this problem involves high dimension and continuous state space, standard Q-learning cannot solve this problem unless some amount of discretisation is done. Due to above mentioned difficulties, Deep Q-Network (DQN) was the choice and we wanted to explore different variants of DQN (particularly DQN with prioritize replay, Double DQN, and Dueling network architecture).
 
 
-\section{Problem Statement}
-Landing pad is always at coordinates (0,0). Coordinates are the first two numbers in state vector. Reward for moving from the top of the screen to landing pad and zero speed is about 100..140 points. If lander moves away from landing pad it loses reward back. Episode finishes if the lander crashes or comes to rest, receiving additional -100 or +100 points. Each leg ground contact is +10. Firing main engine is -0.3 points each frame. Solved is 200 points. Landing outside landing pad is possible. Fuel is infinite, so an agent can learn to fly and then land on its first attempt. Four discrete actions available: do nothing, fire left orientation engine, fire main engine, fire right orientation engine.
+\section{Environment and States Description}
 
+\subsection{Terrain}
 
+The terrain is a combination of 10 points, and the helipad(landing zone) is fixed between 5th and 6th points towards the center. The values of the height of the landing zone(5th and 6th points on the terrain) are viewport height divided by 4, and the rest of the points are randomly sampled between 0 to H/2 using numpy random and smoothened (averaging 3 continuous points).
 
-\section{Goal}
+\subsection{Initial State}
 
-Obtain a policy that once followed by agent made it capable of landing a space vehicle into landing pad region with speed close to 0(soft landing). Rewards is a combination of how much is the speed of lander (close to 0) , how close is the landing pad, every time a we fire engine there is negative reward of 0.3 per frame.  The state space is a 8 dimensional and number of actions we can take are 4 [do noting, fire left, fire right, fire main engine].
+The state is 8 dimensional values of different parameters of the lunar lander at any given time. The starting state is randomly initialised (the lunar lander takes a step in the world through the "idle" action) with certain bounds based on the environment.
 
-We are proposing to use Q-learning to solve this descrete state space problem. We will be implementing different variants of Deep Q Network (DQN) to predict the actions given current state.
+Inspecting code of open\_ai lunar lander, we see that the initial states are defined by simulating the environment in one frame (calling box world simulation using time step as $1/FPS$). Using this simulation, elaborating the initial state as follows:
+
+\begin{enumerate}
+\item Position X (Initial Position X: final x which changed from half of viewport width to a value after taking "idle" action before the simulation)
+\item Position Y (Initial Position Y: final y which changed from from the viewport height to a value after taking "idle" action before simulation)
+\item Velocity X (Initial Velocity X: final velocity x changed from 0 to a value after taking "idle" action before simulation)
+\item Velocity Y (Initial Velocity Y: final velocity y which changed from 0 to a value after taking "idle" action before simulation)
+\item Current lander angle (Initial lander angle: final lander angle after simulation on "idle" action from 0 degrees)
+\item Angular velocity (Initial angular velocity: final angular velocity after simulation on "idle" action from 0 angular velocity)
+\item Left leg contacted the surface (Initial value: False, since there's is no probability that the lunar lander's leg will touch the moon surface when at the top)
+\item Right leg contacted the surface (Initial value: False)
+\end{enumerate}
+
+\subsection{End State}
+
+The episode ends in the following scenarios:
+
+\begin{enumerate}
+\item  When the lunar lander goes outside of the viewport bounds, the game is over with -100 is negative reward.
+\item  When the lunar lander touches the ground with a high velocity
+\item When the lunar lander touches the ground with body part except the legs
+\item When the lunar lander stabilises on the moon's surface (change in shape of lunar lander is constantly 0 for a number of frames)
+\end{enumerate}
+
+\subsection{Rewards and Transitions}
+
+Before defining the rewards, let's define the shape of the lunar lander which decides the rewards. The shape of the lunar lander is a function of position coordinates $(x, y)$, linear velocities $(v_x, v_y)$, lander angle $\theta$ and contact of both the lander legs. We are interested in finding the change of shape at every step for the lunar lander to calculate the rewards for each given action. Shape change is given by subtraction of previous shape and current shape. Formally, shaping at time frame $t$:
+
+\begin{align*}
+\text{shaping}_{t} = &- 100*(x^2 + y^2) \\
+           & - 100*(v_x^2 + v_y^2) \\
+            &- 100*abs(\theta) + 10*(\text{Left leg contacted}) + 10*(\text{Right leg contacted}) \\
+\text{shape change} = & \text{shaping}_t - \text{shaping}_{t-1}
+\end{align*}
+
+The rewards are defined as follows:
+
+\begin{enumerate}
+\item If the lunar lander crashes, or goes out of the bounds: $-100$
+\item If the lunar lander is not awake anymore (stabilises at 0 shape change): $+100$
+\item Doing nothing: shape change
+\item Firing the engine: shape change - 0.3
+\item Rotating: shape change - 0.03
+\end{enumerate}
+
+The total reward will automatically be a sum of all the rewards at each time frame, and if the lander touches the ground with it's legs, will add those rewards to the total rewards earned during an episode. Transition probabilities are unknown, we get next states by simulating the lunar lander in the box environment given the current state and action taken. \\
+
+\textbf{Note}: The transition probabilities and rewards are unknown to our agent, which it will try to figure out through exploration and incorporate in learning.
