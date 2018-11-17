@@ -39,14 +39,15 @@ The episode ends in the following scenarios:
 \item When the lunar lander stabilises on the moon's surface (change in shape of lunar lander is constantly 0 for a number of frames)
 \end{enumerate}
 
-\subsection{Rewards}
+\subsection{Rewards and Transitions}
 
-Before defining the rewards, let's define the shape of the lunar lander which decides the rewards. The shape of the lunar lander is a function of position coordinates $(x, y)$, linear velocities $(v_x, v_y)$, lander angle $\theta$ and contact of both the lander legs. We are interested in finding the change of shape at every step for the lunar lander to calculate the rewards for each given action. Shape change is given by subtraction of previous shape and current shape. Formally:
+Before defining the rewards, let's define the shape of the lunar lander which decides the rewards. The shape of the lunar lander is a function of position coordinates $(x, y)$, linear velocities $(v_x, v_y)$, lander angle $\theta$ and contact of both the lander legs. We are interested in finding the change of shape at every step for the lunar lander to calculate the rewards for each given action. Shape change is given by subtraction of previous shape and current shape. Formally, shaping at time frame $t$:
 
 \begin{align*}
-\text{shaping} = &- 100*(x^2 + y^2) \\
+\text{shaping}_{t} = &- 100*(x^2 + y^2) \\
            & - 100*(v_x^2 + v_y^2) \\
-            &- 100*abs(\theta) + 10*(\text{Left leg contacted}) + 10*(\text{Right leg contacted})
+            &- 100*abs(\theta) + 10*(\text{Left leg contacted}) + 10*(\text{Right leg contacted}) \\
+\text{shape change} = & \text{shaping}_t - \text{shaping}_{t-1}
 \end{align*}
 
 The rewards are defined as follows:
@@ -54,11 +55,11 @@ The rewards are defined as follows:
 \begin{enumerate}
 \item If the lunar lander crashes, or goes out of the bounds: $-100$
 \item If the lunar lander is not awake anymore (stabilises at 0 shape change): $+100$
-\item Firing the engine: shape change
+\item Doing nothing: shape change
+\item Firing the engine: shape change - 0.3
+\item Rotating: shape change - 0.03
 \end{enumerate}
 
-\section{Goal}
+The total reward will automatically be a sum of all the rewards at each time frame, and if the lander touches the ground with it's legs, will add those rewards to the total rewards earned during an episode. Transition probabilities are unknown, we get next states by simulating the lunar lander in the box environment given the current state and action taken. \\
 
-Obtain a policy that once followed by agent made it capable of landing a space vehicle into landing pad region with speed close to 0(soft landing). Rewards is a combination of how much is the speed of lander (close to 0) , how close is the landing pad, every time a we fire engine there is negative reward of 0.3 per frame.  The state space is a 8 dimensional and number of actions we can take are 4 [do noting, fire left, fire right, fire main engine].
-
-We are proposing to use Q-learning to solve this descrete state space problem. We will be implementing different variants of Deep Q Network (DQN) to predict the actions given current state.
+\textbf{Note}: The transition probabilities and rewards are unknown to our agent, which it will try to figure out through exploration and incorporate in learning.
