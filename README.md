@@ -18,6 +18,16 @@ You are ready! We recommend using [pycharm community edition](https://www.jetbra
 2. Go to `Project Interpreter` under `Project:lunar-lander`
 3. Click on settings cog wheel on right side of top Project Interpreter path specification and click on `Add...`. Choose existing environment and add the path of the one you created. [Here's](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html) detailed description of how to configure venv in pycharm.
 
+### Google Cloud:
+
+1. Prior to any step, please make sure you have [dependencies](https://github.com/openai/gym#installing-everything) specific to debian machine for installing gym.
+
+apt-get install libjpeg-dev cmake swig python-pyglet python3-opengl libboost-all-dev \
+        libsdl2-2.0.0 libsdl2-dev libglu1-mesa libglu1-mesa-dev libgles2-mesa-dev \
+        freeglut3 xvfb libav-tools
+        
+2. Use `requirements-google-cloud.txt` to install requirements specific to debian.
+
 ### Contributing:
 
 Please follow the following guidelines to contribute.
