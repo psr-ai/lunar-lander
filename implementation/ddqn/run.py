@@ -1,7 +1,7 @@
 import numpy as np
 from collections import deque
-from implementation.ddqn.environment import Environment
-from implementation.ddqn.agent import Agent
+from environment import Environment
+from agent import Agent
 
 viewOnly = False
 

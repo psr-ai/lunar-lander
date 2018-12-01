@@ -1,7 +1,7 @@
 import gym
 import numpy as np
 
-from implementation.ddqn.hyperparameters import REPLAY_BATCH_SIZE
+from hyperparameters import REPLAY_BATCH_SIZE
 
 
 class Environment:

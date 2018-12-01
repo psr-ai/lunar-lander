@@ -1,8 +1,8 @@
 import numpy as np
 
-from implementation.ddqn.brain import Brain
-from implementation.ddqn.memory import Memory
-from implementation.ddqn.hyperparameters import MAX_MEMORY_LENGTH, REPLAY_BATCH_SIZE, GAMMA, \
+from brain import Brain
+from memory import Memory
+from hyperparameters import MAX_MEMORY_LENGTH, REPLAY_BATCH_SIZE, GAMMA, \
                             EPSILON_MAX, EPSILON_MIN, EPSILON_DECAY, UPDATE_TARGET_FREQUENCY
 
 
