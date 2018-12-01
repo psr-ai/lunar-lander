@@ -1,7 +1,7 @@
 import gym
 import numpy as np
 
-from hyperparameters import REPLAY_BATCH_SIZE
+from hyperparameters import BATCH_SIZE
 
 
 class Environment:
@@ -37,7 +37,7 @@ class Environment:
             state_prime = self.reshape_state(state_prime)
 
             agent.observe((state, action, reward, state_prime, done))
-            if agent.memory.length() > REPLAY_BATCH_SIZE:
+            if agent.memory.length() > BATCH_SIZE:
                 agent.replay()
 
             state = state_prime

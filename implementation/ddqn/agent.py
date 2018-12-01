@@ -2,8 +2,8 @@ import numpy as np
 
 from brain import Brain
 from memory import Memory
-from hyperparameters import MAX_MEMORY_LENGTH, REPLAY_BATCH_SIZE, GAMMA, \
-                            EPSILON_MAX, EPSILON_MIN, EPSILON_DECAY, UPDATE_TARGET_FREQUENCY
+from hyperparameters import MAX_MEMORY_LENGTH, BATCH_SIZE, GAMMA, \
+                            EPSILON_MAX, EPSILON_MIN, EPSILON_DECAY
 
 
 class Agent:
@@ -31,7 +31,7 @@ class Agent:
             self.epsilon *= EPSILON_DECAY
 
     def replay(self):
-        minibatch = self.memory.sample(REPLAY_BATCH_SIZE)
+        minibatch = self.memory.sample(BATCH_SIZE)
         minibatch = np.array(minibatch)
         not_done_indices = np.where(minibatch[:, 4] == False)
         y = np.copy(minibatch[:, 2])
@@ -49,5 +49,5 @@ class Agent:
 
         actions = np.array(minibatch[:, 1], dtype=int)
         y_target = self.brain.predict(np.vstack(minibatch[:, 0]))
-        y_target[range(REPLAY_BATCH_SIZE), actions] = y
+        y_target[range(BATCH_SIZE), actions] = y
         self.brain.train(np.vstack(minibatch[:, 0]), y_target)
