@@ -8,7 +8,7 @@ from agent import Agent
 # Define the parameters here
 should_learn = True
 should_render = False
-output_dir = 'model_output_full_dqn/'
+output_dir = 'model_output_full_dqn_1/'
 # initial_weights = './ddqn/model_output_ddqn/weights_2000.hdf5'
 initial_weights = ''
 episodes = 10000

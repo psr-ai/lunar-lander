@@ -55,7 +55,7 @@ class Agent:
                                                                          np.argmax(predict_sprime[not_done_indices, :][0],
                                                                                    axis=1)][0])
             elif self.type_of_agent == 'FullDQN':
-                y[not_done_indices] += np.multiply(GAMMA, np.max(predict_sprime_target[not_done_indices, :][0]))
+                y[not_done_indices] += np.multiply(GAMMA, np.max(predict_sprime_target[not_done_indices, :][0], axis=1))
             else:
                 raise Exception('Please specify the learning algorithm among DDQN or FullDQN')
 
