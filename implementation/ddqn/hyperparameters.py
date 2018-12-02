@@ -1,6 +1,8 @@
 # number of instances in episode to keep in memory
 MAX_MEMORY_LENGTH = 2**16
 BATCH_SIZE = 2 ** 5
+# minimum memory populated before sampling
+MIN_MEMORY_LENGTH = 2 ** 6
 GAMMA = 0.99
 EPSILON_MAX = 1
 EPSILON_MIN = 0
