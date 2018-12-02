@@ -44,7 +44,7 @@ EXPERIMENTS_DIR = os.path.join(MAIN_DIR, "experiments/first")  # relative path o
 
 session = tf.Session()
 
-summary_writer = tf.summary.FileWriter('EXPERIMENTS_DIR', session.graph)
+summary_writer = tf.summary.FileWriter(EXPERIMENTS_DIR, session.graph)
 
 
 # Setup experiment dir and logfile
