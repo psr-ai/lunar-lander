@@ -4,17 +4,23 @@ from collections import deque
 from environment import Environment
 from agent import Agent
 
-view_only = True
+
+# Define the parameters here
+should_learn = True
+should_render = False
 output_dir = ''
-initial_weights = './ddqn/model_output_ddqn/weights_2000.hdf5'
+# initial_weights = './ddqn/model_output_ddqn/weights_2000.hdf5'
+initial_weights = ''
 episodes = 10000
+type_of_agent = 'DDQN'
+# End parameters
 
 PROBLEM = 'LunarLander-v2'
-env = Environment(PROBLEM, should_learn=not view_only, should_render=True)
+env = Environment(PROBLEM, should_learn=should_learn, should_render=should_render)
 
 np.set_printoptions(precision=2)
 
-agent = Agent(env.number_of_states(), env.number_of_actions(), initial_weights=initial_weights, only_exploitation=view_only)
+agent = Agent(env.number_of_states(), env.number_of_actions(), type_of_agent=type_of_agent, initial_weights=initial_weights, only_exploitation=not should_learn)
 
 if output_dir and not os.path.exists(output_dir):
     os.makedirs(output_dir)

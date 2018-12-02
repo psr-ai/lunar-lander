@@ -56,6 +56,8 @@ class Agent:
                                                                                    axis=1)][0])
             elif self.type_of_agent == 'FullDQN':
                 y[not_done_indices] += np.multiply(GAMMA, np.max(predict_sprime_target[not_done_indices, :][0]))
+            else:
+                raise Exception('Please specify the learning algorithm among DDQN or FullDQN')
 
         actions = np.array(minibatch[:, 1], dtype=int)
         y_target = self.brain.predict(np.vstack(minibatch[:, 0]))
