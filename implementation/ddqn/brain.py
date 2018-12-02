@@ -35,3 +35,9 @@ class Brain:
     def predict(self, s, target=False):
         return self.model_.predict(s) if target else self.model.predict(s)
 
+    def save_weights(self, file_path, target=False):
+        self.model_.save_weights(file_path) if target else self.model.save_weights(file_path)
+
+    def load_weights(self, file_path, target=False):
+        self.model_.load_weights(file_path) if target else self.model.load_weights(file_path)
+

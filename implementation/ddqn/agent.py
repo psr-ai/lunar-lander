@@ -10,11 +10,17 @@ class Agent:
     steps = 0
     epsilon = EPSILON_MAX
 
-    def __init__(self, number_of_states, number_of_actions, type_of_agent='DDQN'):
+    def __init__(self, number_of_states, number_of_actions, type_of_agent='DDQN', initial_weights='', only_exploitation=False):
         self.number_of_states = number_of_states
         self.number_of_actions = number_of_actions
+        self.only_exploitation = only_exploitation
+        if only_exploitation:
+            self.epsilon = 0
 
         self.brain = Brain(number_of_states, number_of_actions)
+        if initial_weights:
+            self.brain.load_weights(initial_weights)
+            self.brain.load_weights(initial_weights, True)
         self.memory = Memory(MAX_MEMORY_LENGTH)
         self.type_of_agent = type_of_agent
 
