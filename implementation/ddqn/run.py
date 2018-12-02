@@ -8,11 +8,11 @@ from agent import Agent
 # Define the parameters here
 should_learn = True
 should_render = False
-output_dir = ''
+output_dir = 'model_output_full_dqn/'
 # initial_weights = './ddqn/model_output_ddqn/weights_2000.hdf5'
 initial_weights = ''
 episodes = 10000
-type_of_agent = 'DDQN'
+type_of_agent = 'FullDQN'
 # End parameters
 
 PROBLEM = 'LunarLander-v2'
