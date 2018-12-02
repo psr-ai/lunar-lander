@@ -10,12 +10,13 @@ class Agent:
     steps = 0
     epsilon = EPSILON_MAX
 
-    def __init__(self, number_of_states, number_of_actions):
+    def __init__(self, number_of_states, number_of_actions, type_of_agent='DDQN'):
         self.number_of_states = number_of_states
         self.number_of_actions = number_of_actions
 
         self.brain = Brain(number_of_states, number_of_actions)
         self.memory = Memory(MAX_MEMORY_LENGTH)
+        self.type_of_agent = type_of_agent
 
     def act(self, s):
         if np.random.rand() <= self.epsilon:
@@ -42,10 +43,13 @@ class Agent:
             predict_sprime_target = self.brain.predict(np.vstack(minibatch[:, 3]), True)
 
             # Non-terminal update rule
-            y[not_done_indices] += np.multiply(GAMMA, \
-                                               predict_sprime_target[not_done_indices, \
-                                                                     np.argmax(predict_sprime[not_done_indices, :][0],
-                                                                               axis=1)][0])
+            if self.type_of_agent == 'DDQN':
+                y[not_done_indices] += np.multiply(GAMMA, \
+                                                   predict_sprime_target[not_done_indices, \
+                                                                         np.argmax(predict_sprime[not_done_indices, :][0],
+                                                                                   axis=1)][0])
+            elif self.type_of_agent == 'FullDQN':
+                y[not_done_indices] += np.multiply(GAMMA, np.max(predict_sprime_target[not_done_indices, :][0]))
 
         actions = np.array(minibatch[:, 1], dtype=int)
         y_target = self.brain.predict(np.vstack(minibatch[:, 0]))
