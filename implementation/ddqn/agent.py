@@ -1,16 +1,16 @@
-import numpy as np
-
 from brain import Brain
 from memory import Memory
 from hyperparameters import MAX_MEMORY_LENGTH, BATCH_SIZE, GAMMA, \
-                            EPSILON_MAX, EPSILON_MIN, EPSILON_DECAY
+                            EPSILON_MAX, EPSILON_MIN, EPSILON_DECAY, BRAIN_LEARNING_RATE,NEURAL_NETWORK_LAYERS
+
+import numpy as np
 
 
 class Agent:
     steps = 0
     epsilon = EPSILON_MAX
 
-    def __init__(self, number_of_states, number_of_actions, type_of_agent='DDQN'):
+    def __init__(self, number_of_states, number_of_actions, type_of_agent='FullDQN'):
         self.number_of_states = number_of_states
         self.number_of_actions = number_of_actions
 
@@ -49,8 +49,7 @@ class Agent:
                                                                          np.argmax(predict_sprime[not_done_indices, :][0],
                                                                                    axis=1)][0])
             elif self.type_of_agent == 'FullDQN':
-                y[not_done_indices] += np.multiply(GAMMA, np.max(predict_sprime_target[not_done_indices, :][0]))
-
+                y[not_done_indices] += np.multiply(GAMMA, np.max(predict_sprime_target[not_done_indices, :][0], axis=1))
         actions = np.array(minibatch[:, 1], dtype=int)
         y_target = self.brain.predict(np.vstack(minibatch[:, 0]))
         y_target[range(BATCH_SIZE), actions] = y

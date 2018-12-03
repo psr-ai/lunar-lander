@@ -40,7 +40,7 @@ def write_summary(value, tag, summary_writer, global_step):
     summary_writer.add_summary(summary, global_step)
 
 MAIN_DIR = os.path.relpath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # relative path of the main directory
-EXPERIMENTS_DIR = os.path.join(MAIN_DIR, "experiments/first")  # relative path of experiments dir
+EXPERIMENTS_DIR = os.path.join(MAIN_DIR, "experiments/Dueling_v4")  # relative path of experiments dir
 
 session = tf.Session()
 
@@ -64,17 +64,28 @@ logging.info("----------Epsilon Decau :%f" % EPSILON_DECAY)
 logging.info("----------Min Memory Length    :%d" % MIN_MEMORY_LENGTH)
 logging.info("----------Max Memory Length :%d" % MAX_MEMORY_LENGTH)
 
+scores_window = deque(maxlen=100)
+statistics = {"mean": [], "std": []}
+scores = []
 for e in range(episodes):
     episode_reward, number_of_frames = env.run_episode(agent)
     reward_avg.append(episode_reward)
-    print('episode: ', e, ' score: ', '%.2f' % episode_reward, ' avg_score: ', '%.2f' % np.average(
-        reward_avg), ' frames: ', number_of_frames, ' epsilon: ', '%.2f' % agent.epsilon)
-
+    # print('episode: ', e, ' score: ', '%.2f' % episode_reward, ' avg_score: ', '%.2f' % np.average(
+    #     reward_avg), ' frames: ', number_of_frames, ' epsilon: ', '%.2f' % agent.epsilon)
+    logging.info('episode: %s, score: %s, average_score : %s, number of frames: %s, epsilon: %s'% (str(e), (str(episode_reward)), str(np.average(reward_avg)), str(number_of_frames),str(agent.epsilon)))
 
     write_summary(np.average(reward_avg),"Average Reward",summary_writer, e)
     write_summary(episode_reward,"Episode Reward",summary_writer, e)
     write_summary(number_of_frames,"Number of Frames",summary_writer, e)
 
+    scores.append(episode_reward)
+    scores_window.append(episode_reward)
+    statistics["mean"].append(np.mean(scores_window))
+    statistics["std"].append(np.std(scores_window))
+
+    # if np.mean(scores_window) >= 200.00:
+    #     print("\nLunarLander-v2 Environment solved in {:d} episodes!".format(e - 100))
+    #     break
 
 env.close()
 
