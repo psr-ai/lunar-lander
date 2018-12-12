@@ -17,9 +17,9 @@ logging.basicConfig(level=logging.INFO)
 # Define the parameters here
 MAIN_DIR = os.path.relpath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # relative path of the main directory
 EXPERIMENTS_DIR = os.path.join(MAIN_DIR, "experiments/Dueling_v7/")  # relative path of experiments dir
-initial_weights = ''  # relative path of experiments dir
+initial_weights = os.path.join(EXPERIMENTS_DIR, "weights_0450.hdf5")  # relative path of experiments dir
 
-should_learn = True
+should_learn = False
 should_render = False
 episodes = 10000
 # initial_weights = './ddqn/model_output_ddqn/weights_2000.hdf5'
