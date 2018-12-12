@@ -1,0 +1,10 @@
+Beginning Episodes...
+----------HyperParameters Used----------
+----------Batch Size  :32
+----------LearningRate:0.000100
+----------Discount(Gamma)    :0.990000
+----------Epsilon Min :0.000000
+----------Epsilon Max :1.000000
+----------Epsilon Decau :0.998000
+----------Min Memory Length    :64
+----------Max Memory Length :65536
