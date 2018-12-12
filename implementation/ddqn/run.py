@@ -1,4 +1,5 @@
 import numpy as np
+import os
 from collections import deque
 from environment import Environment
 from agent import Agent
@@ -12,7 +13,16 @@ from hyperparameters import MAX_MEMORY_LENGTH, BATCH_SIZE, GAMMA, \
 
 logging.basicConfig(level=logging.INFO)
 
-viewOnly = False
+
+# Define the parameters here
+should_learn = True
+should_render = False
+output_dir = 'model_output_full_dqn_1/'
+# initial_weights = './ddqn/model_output_ddqn/weights_2000.hdf5'
+initial_weights = ''
+episodes = 10000
+type_of_agent = 'FullDQN'
+# End parameters
 
 # Define the parameters here
 should_learn = False
@@ -56,8 +66,8 @@ agent = Agent(env.number_of_states(), env.number_of_actions(), only_exploitation
 
 session = tf.Session()
 
-
-# Set to true to use saved model
+if output_dir and not os.path.exists(output_dir):
+    os.makedirs(output_dir)
 
 if viewOnly:
     agent.model.load_weights(initial_weights)
@@ -95,6 +105,7 @@ scores = []
 for e in range(episodes):
     episode_reward, number_of_frames = env.run_episode(agent)
     reward_avg.append(episode_reward)
+
     # print('episode: ', e, ' score: ', '%.2f' % episode_reward, ' avg_score: ', '%.2f' % np.average(
     #     reward_avg), ' frames: ', number_of_frames, ' epsilon: ', '%.2f' % agent.epsilon)
     logging.info('episode: %s, score: %s, average_score : %s, number of frames: %s, epsilon: %s'% (str(e), (str(episode_reward)), str(np.average(reward_avg)), str(number_of_frames),str(agent.epsilon)))
@@ -114,7 +125,7 @@ for e in range(episodes):
 
     if e % 50 == 0:
         agent.brain.save_weights(EXPERIMENTS_DIR + "weights_" + '{:04d}'.format(e) + ".hdf5", True)
-
+        
 env.close()
 
 
