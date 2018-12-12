@@ -17,7 +17,7 @@ class Agent:
         if only_exploitation:
             self.epsilon = 0
 
-        self.brain = Brain(number_of_states, number_of_actions)
+        self.brain = Brain(number_of_states, number_of_actions, type_of_agent=type_of_agent)
         if initial_weights:
             self.brain.load_weights(initial_weights)
             self.brain.load_weights(initial_weights, True)
@@ -47,17 +47,15 @@ class Agent:
         if len(not_done_indices[0]) > 0:
             predict_sprime = self.brain.predict(np.vstack(minibatch[:, 3]))
             predict_sprime_target = self.brain.predict(np.vstack(minibatch[:, 3]), True)
-
             # Non-terminal update rule
-            if self.type_of_agent == 'DDQN':
-                y[not_done_indices] += np.multiply(GAMMA, \
-                                                   predict_sprime_target[not_done_indices, \
-                                                                         np.argmax(predict_sprime[not_done_indices, :][0],
-                                                                                   axis=1)][0])
-            elif self.type_of_agent == 'FullDQN':
+            if self.type_of_agent == 'FullDQN':
                 y[not_done_indices] += np.multiply(GAMMA, np.max(predict_sprime_target[not_done_indices, :][0], axis=1))
             else:
-                raise Exception('Please specify the learning algorithm among DDQN or FullDQN')
+                y[not_done_indices] += np.multiply(GAMMA, \
+                                                   predict_sprime_target[not_done_indices, \
+                                                                         np.argmax(
+                                                                             predict_sprime[not_done_indices, :][0],
+                                                                             axis=1)][0])
 
         actions = np.array(minibatch[:, 1], dtype=int)
         y_target = self.brain.predict(np.vstack(minibatch[:, 0]))

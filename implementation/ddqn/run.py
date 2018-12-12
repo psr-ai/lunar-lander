@@ -15,28 +15,22 @@ logging.basicConfig(level=logging.INFO)
 
 
 # Define the parameters here
+MAIN_DIR = os.path.relpath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # relative path of the main directory
+EXPERIMENTS_DIR = os.path.join(MAIN_DIR, "experiments/Dueling_v7/")  # relative path of experiments dir
+initial_weights = ''  # relative path of experiments dir
+
 should_learn = True
 should_render = False
-output_dir = 'model_output_full_dqn_1/'
-# initial_weights = './ddqn/model_output_ddqn/weights_2000.hdf5'
-initial_weights = ''
 episodes = 10000
-type_of_agent = 'FullDQN'
+# initial_weights = './ddqn/model_output_ddqn/weights_2000.hdf5'
+type_of_agent = 'Dueling'
+
 # End parameters
 
-# Define the parameters here
-should_learn = False
-should_render = True
-# output_dir = 'model_output_full_dqn_1/'
-
-
-
 PROBLEM = 'LunarLander-v2'
-env = Environment(PROBLEM,should_learn=False,should_render=True)
+env = Environment(PROBLEM, should_learn=should_learn, should_render=should_render)
 
 np.set_printoptions(precision=2)
-
-
 
 
 def write_summary(value, tag, summary_writer, global_step):
@@ -45,36 +39,13 @@ def write_summary(value, tag, summary_writer, global_step):
     summary.value.add(tag=tag, simple_value=value)
     summary_writer.add_summary(summary, global_step)
 
-MAIN_DIR = os.path.relpath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # relative path of the main directory
-EXPERIMENTS_DIR = os.path.join(MAIN_DIR, "experiments/Dueling_v7/")  # relative path of experiments dir
-
-initial_weights = os.path.join(EXPERIMENTS_DIR, "weights_0450.hdf5")  # relative path of experiments dir
-
 # initial_weights = ''
-episodes = 10000
 # type_of_agent = 'FullDQN'
 # End parameters
 
-
-
-agent = Agent(env.number_of_states(), env.number_of_actions(), only_exploitation=True,initial_weights=initial_weights)
-
-
-
-
-
+agent = Agent(env.number_of_states(), env.number_of_actions(), type_of_agent=type_of_agent, only_exploitation=not should_learn, initial_weights=initial_weights)
 
 session = tf.Session()
-
-if output_dir and not os.path.exists(output_dir):
-    os.makedirs(output_dir)
-
-if viewOnly:
-    agent.model.load_weights(initial_weights)
-    episodes = 100
-    agent.epsilon = 0
-else:
-    episodes = 10000
 
 # Cumulative reward
 reward_avg = deque(maxlen=100)

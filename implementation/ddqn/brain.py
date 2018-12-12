@@ -6,15 +6,16 @@ from hyperparameters import BRAIN_LEARNING_RATE, BATCH_SIZE, NEURAL_NETWORK_LAYE
 
 class Brain:
 
-    def __init__(self, number_of_states, number_of_actions):
+    def __init__(self, number_of_states, number_of_actions, type_of_agent = ''):
         self.number_of_states = number_of_states
         self.number_of_actions = number_of_actions
+        self.type_of_agent = type_of_agent
         self.model = self.create_model()
         self.model_ = self.create_model()
 
-    def create_model(self, dueling=True,linear=False):
+    def create_model(self):
 
-        if dueling:
+        if self.type_of_agent == 'Dueling':
             inp = Input(shape=(self.number_of_states,))
             layer_shared1 = Dense(128, activation='relu', kernel_initializer='he_uniform', use_bias=True)(inp)
             layer_shared2 = Dense(64, activation='relu', kernel_initializer='he_uniform', use_bias=True)(layer_shared1)
@@ -41,7 +42,7 @@ class Brain:
 
             model = Model(inp, layer_q)
             model.summary()
-        elif linear:
+        elif self.type_of_agent == 'Linear':
             model = Sequential()
 
             model.add(Dense(8, input_dim=self.number_of_states,activation='linear'))
@@ -61,14 +62,6 @@ class Brain:
                     model.add(Dense(layer['number_of_nodes'], activation=layer['activation']))
 
             model.add(Dense(self.number_of_actions, activation='linear'))
-        # Old Dueling
-        #     layer = model.layers[-2]
-        #     nb_action = model.output._keras_shape[-1]
-        #     y = Dense(nb_action + 1, activation='linear')(layer.output)
-        #     outputlayer = Lambda(
-        #         lambda a: K.expand_dims(a[:, 0], -1) + a[:, 1:] - K.mean(a[:, 1:], axis=1, keepdims=True),
-        #         output_shape=(nb_action,))(y)
-        #     model = Model(inputs=model.input, outputs=outputlayer)
 
         model.compile(loss='mse', optimizer=Adam(lr=BRAIN_LEARNING_RATE))
         return model
