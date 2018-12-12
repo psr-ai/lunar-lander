@@ -5,10 +5,11 @@ from hyperparameters import MIN_MEMORY_LENGTH
 
 
 class Environment:
-    def __init__(self, problem, should_render=False):
+    def __init__(self, problem, should_learn=True, should_render=False):
         self.problem = problem
         self.env = gym.make(problem)
         self.should_render = should_render
+        self.should_learn = should_learn
 
     def number_of_states(self):
         return self.env.observation_space.shape[0]
@@ -35,10 +36,10 @@ class Environment:
 
             state_prime, reward, done, info = self.env.step(action)
             state_prime = self.reshape_state(state_prime)
-
-            agent.observe((state, action, reward, state_prime, done))
-            if agent.memory.length() > MIN_MEMORY_LENGTH:
-                agent.replay()
+            if self.should_learn:
+                agent.observe((state, action, reward, state_prime, done))
+                if agent.memory.length() > MIN_MEMORY_LENGTH:
+                    agent.replay()
 
             state = state_prime
             total_reward += reward
@@ -46,6 +47,7 @@ class Environment:
             if done:
                 break
 
-        agent.brain.target_model_update()
-        agent.update_epsilon()
+        if self.should_learn:
+            agent.brain.target_model_update()
+            agent.update_epsilon()
         return total_reward, number_of_frames

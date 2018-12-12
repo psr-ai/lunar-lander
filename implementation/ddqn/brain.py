@@ -12,12 +12,12 @@ class Brain:
         self.model = self.create_model()
         self.model_ = self.create_model()
 
-    def create_model(self, dueling=True):
+    def create_model(self, dueling=True,linear=False):
 
         if dueling:
             inp = Input(shape=(self.number_of_states,))
             layer_shared1 = Dense(128, activation='relu', kernel_initializer='he_uniform', use_bias=True)(inp)
-            layer_shared2 = Dense(32, activation='relu', kernel_initializer='he_uniform', use_bias=True)(layer_shared1)
+            layer_shared2 = Dense(64, activation='relu', kernel_initializer='he_uniform', use_bias=True)(layer_shared1)
             print("Shared layers initialized....")
 
             layer_v2 = Dense(1, activation='linear', kernel_initializer='he_uniform', use_bias=True)(layer_shared2)
@@ -40,6 +40,13 @@ class Brain:
             print("Q-function layer initialized.... :)\n")
 
             model = Model(inp, layer_q)
+            model.summary()
+        elif linear:
+            model = Sequential()
+
+            model.add(Dense(8, input_dim=self.number_of_states,activation='linear'))
+            model.add(Dense(self.number_of_actions, activation='linear'))
+            # model.add(Dense(self.number_of_actions,kernel_initializer='normal'))
             model.summary()
 
         else:
@@ -76,3 +83,8 @@ class Brain:
     def predict(self, s, target=False):
         return self.model_.predict(s) if target else self.model.predict(s)
 
+    def save_weights(self, file_path, target=False):
+        self.model_.save_weights(file_path) if target else self.model.save_weights(file_path)
+
+    def load_weights(self, file_path, target=False):
+        self.model_.load_weights(file_path) if target else self.model.load_weights(file_path)

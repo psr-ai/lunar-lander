@@ -7,6 +7,6 @@ GAMMA = 0.99
 EPSILON_MAX = 1  #1
 EPSILON_MIN = 0.01  #0
 EPSILON_DECAY = 0.995 #0.998
-BRAIN_LEARNING_RATE = 0.0005
+BRAIN_LEARNING_RATE = 0.0001
 
 NEURAL_NETWORK_LAYERS = [{ 'activation': 'relu', 'number_of_nodes': 128}, { 'activation': 'relu', 'number_of_nodes': 64}]

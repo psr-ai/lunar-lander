@@ -14,24 +14,20 @@ logging.basicConfig(level=logging.INFO)
 
 viewOnly = False
 
+# Define the parameters here
+should_learn = False
+should_render = True
+# output_dir = 'model_output_full_dqn_1/'
+
+
+
 PROBLEM = 'LunarLander-v2'
-env = Environment(PROBLEM)
+env = Environment(PROBLEM,should_learn=False,should_render=True)
 
 np.set_printoptions(precision=2)
 
-agent = Agent(env.number_of_states(), env.number_of_actions())
 
-# Set to true to use saved model
 
-if viewOnly:
-    agent.model.load_weights('./weights/trained_agent.h5')
-    episodes = 100
-    agent.epsilon = 0
-else:
-    episodes = 10000
-
-# Cumulative reward
-reward_avg = deque(maxlen=100)
 
 def write_summary(value, tag, summary_writer, global_step):
     """Write a single summary value to tensorboard"""
@@ -40,11 +36,40 @@ def write_summary(value, tag, summary_writer, global_step):
     summary_writer.add_summary(summary, global_step)
 
 MAIN_DIR = os.path.relpath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # relative path of the main directory
-EXPERIMENTS_DIR = os.path.join(MAIN_DIR, "experiments/Dueling_v4")  # relative path of experiments dir
+EXPERIMENTS_DIR = os.path.join(MAIN_DIR, "experiments/Dueling_v7/")  # relative path of experiments dir
+
+initial_weights = os.path.join(EXPERIMENTS_DIR, "weights_0450.hdf5")  # relative path of experiments dir
+
+# initial_weights = ''
+episodes = 10000
+# type_of_agent = 'FullDQN'
+# End parameters
+
+
+
+agent = Agent(env.number_of_states(), env.number_of_actions(), only_exploitation=True,initial_weights=initial_weights)
+
+
+
+
+
 
 session = tf.Session()
 
-summary_writer = tf.summary.FileWriter(EXPERIMENTS_DIR, session.graph)
+
+# Set to true to use saved model
+
+if viewOnly:
+    agent.model.load_weights(initial_weights)
+    episodes = 100
+    agent.epsilon = 0
+else:
+    episodes = 10000
+
+# Cumulative reward
+reward_avg = deque(maxlen=100)
+
+# summary_writer = tf.summary.FileWriter(EXPERIMENTS_DIR, session.graph)
 
 
 # Setup experiment dir and logfile
@@ -74,9 +99,9 @@ for e in range(episodes):
     #     reward_avg), ' frames: ', number_of_frames, ' epsilon: ', '%.2f' % agent.epsilon)
     logging.info('episode: %s, score: %s, average_score : %s, number of frames: %s, epsilon: %s'% (str(e), (str(episode_reward)), str(np.average(reward_avg)), str(number_of_frames),str(agent.epsilon)))
 
-    write_summary(np.average(reward_avg),"Average Reward",summary_writer, e)
-    write_summary(episode_reward,"Episode Reward",summary_writer, e)
-    write_summary(number_of_frames,"Number of Frames",summary_writer, e)
+    # write_summary(np.average(reward_avg),"Average Reward",summary_writer, e)
+    # write_summary(episode_reward,"Episode Reward",summary_writer, e)
+    # write_summary(number_of_frames,"Number of Frames",summary_writer, e)
 
     scores.append(episode_reward)
     scores_window.append(episode_reward)
@@ -86,6 +111,9 @@ for e in range(episodes):
     # if np.mean(scores_window) >= 200.00:
     #     print("\nLunarLander-v2 Environment solved in {:d} episodes!".format(e - 100))
     #     break
+
+    if e % 50 == 0:
+        agent.brain.save_weights(EXPERIMENTS_DIR + "weights_" + '{:04d}'.format(e) + ".hdf5", True)
 
 env.close()
 
