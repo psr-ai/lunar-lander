@@ -1,0 +1,62 @@
+%\documentclass{vgtc}
+% commented
+%\usepackage{amsmath, url, graphicx, algorithm, ctable, times}
+%\usepackage{algpseudocode}
+%\usepackage{enumitem}
+
+% newly added per NIPS
+%\documentclass{article} % For LaTeX2e
+%\usepackage{hyperref}
+%\usepackage{url}
+%
+
+\documentclass{article}
+\usepackage{fullpage,enumitem,amsmath,amssymb,graphicx,url,listings,color,hyperref}
+
+
+%\definecolor{mygreen}{RGB}{28,172,0}  % color values Red, Green, Blue
+%\definecolor{mylilas}{RGB}{170,55,241}
+
+%\usepackage{nips13submit_e,times}
+
+%\makeatletter
+%\renewcommand{\ALG@beginalgorithmic}{\small}
+%\makeatother
+
+\usepackage[caption=false]{subfig}
+%\marginsize{1.5cm}{1.5cm}{1cm}{1cm}
+\captionsetup{font = scriptsize}
+%\makesavenoteenv{tabular}
+
+
+\begin{document}
+
+\pagestyle{empty} 
+%\title{Large AI Agent for Lunar Lander}
+
+\title{\textbf{ AI Agent for Lunar Lander}}
+
+\author{Prabhjot Singh Rai  (prabhjot) \\ 
+\and Abhishek Bharani (abharani) \\
+\and Amey Naik (ameynaik)
+}
+
+
+\maketitle
+
+\input{task_definition}
+\input{infrastructure}
+\input{approach}
+
+\input{experiments}
+\input{conclusion}
+\input{codalab}
+\pagestyle{plain}
+\bibliographystyle{abbrv}
+\newpage
+\bibliography{biblio}
+
+%\input{contribution}
+
+\end{document}
+

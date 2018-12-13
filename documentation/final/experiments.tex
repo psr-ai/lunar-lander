@@ -1,0 +1,115 @@
+\section{Experiments and Evaluation}
+In this section, we will present experimental results for all three different models presented in previous section as well as the visualization of training process.
+
+
+\subsection{ Baselines}
+The first baseline is purely a random approach. The Agent was taking random actions and this is just to make sure our agent outperforms a random one. 
+The second baseline is a simple linear classifier.
+
+\subsection{ Training}
+In the most proposed models an initial learning rate of $10^{-4}$ was used to initialize training. Adam Optimizer is used for full duration of number of episodes. All models can be trained within 30-40 mins on CPU as input to the neural network is a state vector. All the models were trained for 800 episodes with batch size of 32 or 64. The number of episodes was choosen based on covergence of the loss, while batch size was choosen to be relatively small to get the benefits of stochasticity. We tried different epsilon decay rates to get the best results.
+
+\label{sec:exp}
+\begin{table}%
+\centering
+\begin{tabular}{|l|c|c|}
+\hline
+Model & Avg. Score  & Number of episodes to reach 200 score  \\
+\hline
+Baseline & $-200$ & never \\
+\hline
+Linear Baseline & $-150$ & never \\
+\hline
+DQN & $123$ & $525$ \\
+\hline
+Double DQN & $220$ & $500$ \\
+\hline
+Dueling DQN & $225$ & $435$ \\
+\hline
+\end{tabular}
+\caption{Comparision of Results for different model implementations}
+\label{tab:accuracy}
+\end{table}
+
+ 
+\begin{figure}[!ht]
+%\begin{figure}%
+%\vspace*{\fill}
+\centering
+\includegraphics[scale=0.75,width=0.75\columnwidth]{figures/Picture1.png}%
+\includegraphics[scale=0.15,width=0.15\columnwidth]{figures/Legend.png}%
+\caption{ Rewards for different approaches on tensor board}%
+\label{fig:Visualization}%
+\end{figure}
+%\vfill}
+
+
+
+\subsection{ Hyperparameter  Tuning}
+-We tested with different learning rate of 0.01, 0.002, 0.005 and 0.001. We noticed our model gave best result with 0.001\\
+-We also tried different epsilon decay and got the best results at 0.995\\
+-We tried various combinations of batchsize(32, 64 & 128). Of all combinations, we saw best score with batch size of 64 across all models. \\
+
+\begin{figure}[!ht]
+%\begin{figure}%
+%\vspace*{\fill}
+\centering
+\includegraphics[scale=0.75,width=0.75\columnwidth]{figures/Hyperparameters1.png}%
+\includegraphics[scale=0.15,width=0.15\columnwidth]{figures/Hyperparameters_legends1.png}%
+\caption{ Different Sets of hyperparamerts for DQN Model}%
+\label{fig:Visualization}%
+\end{figure}
+%\vfill}
+
+
+
+\subsection{ Analysis}
+Error analysis: After doing hyper-parameter tunning, our Agent was able to achive average score of more than 200 quickly (at 435 episodes). 
+However for some episodes after 435 the rewards were not consistently more than 200 for 100 iterations and we observe the variation is more in DQN and Double DQN as compared to Dueling DQN. We got the best performance on Set 4 with Dueling DQN model.
+
+
+
+\label{sec:exp1}
+\begin{table}%
+\centering
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+Hyper-parameter & Set 1  & Set 2 & Set 3 & Set 4  \\
+\hline
+gamma & $0.99$ & $0.99$ & $0.99$ & $0.99$ \\
+\hline
+Epsilon(max,min,decay) & ($1$,$0$,$.998$) &  ($1$,$.01$,$.995$) &  ($1$,$.01$,$.998$) &  ($1$,$.01$,$.998$) \\
+\hline
+Learning Rate & $0.001$ & $0.0001$ & $0.0001$ & $0.0001$ \\
+\hline
+DNN layers & [$32$,$32$] &  [$128$,$32$] &  [$128$,$64$] &  [$128$,$64$] \\
+\hline
+Loss Function & MSE & MSE & MSE & MSE \\
+\hline
+Batch Size & $32$ & $32$  & $64$  & $64$  \\
+\hline
+Replay Memory Size & $2^16$ & $2^16$  & $2^16$  & $2^16$  \\
+\hline
+\end{tabular}
+\caption{Different set of hyper-parameters were tried}
+\label{tab:accuracy1}
+\end{table}
+
+
+
+\subsection{ Model Evaluation}
+
+All aforementioned models are evaluated for 100 episodes after 450 episodes. 
+
+\begin{figure}[!ht]
+%\begin{figure}%
+%\vspace*{\fill}
+\centering
+\includegraphics[scale=0.75,width=0.75\columnwidth]{figures/Picture2.png}%
+\caption{ Evaluating Performance of different DQN Networks}%
+\label{fig:Visualization}%
+\end{figure}
+%\vfill}
+
+\subsection{Regularization}
+
