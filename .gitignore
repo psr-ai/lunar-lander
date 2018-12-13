@@ -8,3 +8,4 @@
 /**/*.bbl
 /**/*.blg
 /venv
+/venv-2.7
