@@ -11,7 +11,8 @@
 %
 
 \documentclass{article}
-\usepackage{fullpage,enumitem,amsmath,amssymb,graphicx,url,listings,color,hyperref}
+\usepackage{fullpage,enumitem,amsmath,
+amssymb,graphicx,url,listings,color,hyperref,floatrow,natbib,pdfpages}
 
 
 %\definecolor{mygreen}{RGB}{28,172,0}  % color values Red, Green, Blue
@@ -45,18 +46,18 @@
 \maketitle
 
 \input{task_definition}
+
 \input{infrastructure}
 \input{approach}
 \input{experiments}
 \input{conclusion}
 \input{codalab}
-\pagestyle{plain}
-\bibliographystyle{abbrv}
-\newpage
-%\bibliography{biblio}
+%\pagestyle{plain}
+
 \bibliography{biblio}
 \bibliographystyle{abbrv}
-%\input{contribution}
+%\newpage
+%%\input{contribution}
 
 \end{document}
 

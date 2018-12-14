@@ -12,31 +12,15 @@ We defined our oracle to be human playing score and the leaderboard scores. In o
 \label{sec:exp}
 \begin{table}%
 \centering
-\begin{tabular}{|l|c|c|c|}
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-Iteration & Prabhjot & Abhishek & Amey   \\
+Player & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10  & Avg. Score \\
 \hline
-1 & $180$ & $80$ & $-90$  \\
+Prabhjot & $180$ & $200$ & $-10$ &  $150$ & $20$ & $10$ & $120$ & $130$ & $-90$ &  $-80$  & $63$ \\
 \hline
-2 & $200$ & $100$ & $170$  \\
+Abhishek & $80$ & $100$ & $-90$ &  $-90$ & $180$ & $120$ & $60$ & $200$ & $210$ &  $-80$  & $69$ \\
 \hline
-3 & $-10$ & $-90$ & $180$  \\
-\hline
-4 & $150$ & $-90$ & $160$  \\
-\hline
-5 & $20$ & $180$ & $30$  \\
-\hline
-6 & $10$  & $120$ & $20$ \\
-\hline
-7 & $120$  & $60$ & $150$ \\
-\hline
-8 & $130$ & $200$ & $-100$   \\
-\hline
-9 & $-90$& $210$ & $90$   \\
-\hline
-10 & $-80$ & $-80$ & $30$  \\
-\hline
-AVG & $63$& $69$ & $82$   \\
+Amey & $-90$ & $170$ & $180$ &  $160$ & $30$ & $20$ & $150$ & $-100$ & $90$ &  $30$ & $82$   \\
 \hline
 \end{tabular}
 \caption{Human Oracle Scores}
@@ -47,82 +31,36 @@ We also compared our results with the ones on OpenAI Gym Leaderboard Wiki. In ge
 
 \subsection{Literature Review}
 
-Since the game of Lunar Lander is available on openAI gym platform, we came across various implementations of it online. We also found a wiki-driven leaderboard is available for a small amount of comparative benchmarks. [FIXME add ref]. We found [FIXME Allan Reyes ref] work to be well documented. Here the AI agent was trained using simple DQN. We started with the same approach of simple DQN, and after experimenting with hyperparameters we could achieve better results of getting reward of 200 within 525 episodes. Later two more algorithms Double DQN and Duel DQN further enhanced the results. So far stand 2nd place on the leaderboard. [FIXME ref]
+Since the game of Lunar Lander is available on openAI gym platform, we came across various implementations of it online. We also found a wiki-driven leaderboard \citep{leaderboard} is available for a small amount of comparative benchmarks. We found Allan Reyes \citep{allanreyes} work to be well documented. Here the AI agent was trained using simple DQN. We started with the same approach of simple DQN, and after experimenting with hyperparameters we could achieve better results of getting reward of 200 within 525 episodes. Later two more algorithms Double DQN and Duel DQN further enhanced the results. So far stand 2nd place on the leaderboard.
 
 \subsection{ Training}
 In the most proposed models an initial learning rate of $10^{-4}$ was used to initialize training. Adam Optimizer is used for full duration of number of episodes. All models can be trained within 30-40 mins on CPU as input to the neural network is a state vector. All the models were trained for 800 episodes with batch size of 32 or 64. The number of episodes was choosen based on covergence of the loss, while batch size was choosen to be relatively small to get the benefits of stochasticity. We tried different epsilon decay rates to get the best results.
 
-\label{sec:exp}
-\begin{table}%
-\centering
-\begin{tabular}{|l|c|c|}
-\hline
-Model & Avg. Score  & Number of episodes to reach 200 score  \\
-\hline
-Baseline & $-200$ & never \\
-\hline
-Linear Baseline & $-150$ & never \\
-\hline
-DQN & $123$ & $525$ \\
-\hline
-Double DQN & $220$ & $500$ \\
-\hline
-Dueling DQN & $225$ & $435$ \\
-\hline
-\end{tabular}
-\caption{Comparision of Results for different model implementations}
-\label{tab:accuracy}
-\end{table}
-
- 
-\begin{figure}[!ht]
-%\begin{figure}%
-%\vspace*{\fill}
-\centering
-\includegraphics[scale=0.75,width=0.75\columnwidth]{figures/Picture1.png}%
-\includegraphics[scale=0.15,width=0.15\columnwidth]{figures/Legend.png}%
-\caption{ Rewards for different approaches on tensor board}%
-\label{fig:Visualization}%
-\end{figure}
-%\vfill}
 
 
 
 \subsection{ Hyperparameter  Tuning}
 -We tested with different learning rate of 0.01, 0.002, 0.005 and 0.001. We noticed our model gave best result with 0.001\\
 -We also tried different epsilon decay and got the best results at 0.995\\
--We tried various combinations of batchsize(32, 64 and 128). Of all combinations, we saw best score with batch size of 64 across all models. \\
+-We tried various combinations of batchsize(32, 64 and 128). Of all combinations, we saw best score with batch size of 64 across all models. 
+\\
+
+
 
 \begin{figure}[!ht]
 %\begin{figure}%
 %\vspace*{\fill}
-\centering
+%\centering
 \includegraphics[scale=0.75,width=0.75\columnwidth]{figures/Hyperparameters1.png}%
 \includegraphics[scale=0.15,width=0.15\columnwidth]{figures/Hyperparameters_legends1.png}%
 \caption{ Different Sets of hyperparamerts for DQN Model}%
-\label{fig:Visualization}%
+\label{fig:HyperParameter Table}%
 \end{figure}
-%\vfill}
 
-
-
-\subsection{ Error Analysis}
- After doing hyper-parameter tuning, our Agent was able to achieve average score of more than 200 quickly (at 435 episodes). 
-However for some episodes after 435 the rewards were not consistently more than 200 for 100 iterations and we observe the variation is more in DQN and Double DQN as compared to Dueling DQN. We got the best performance on Set 4 with Dueling DQN model.
-
-\begin{figure}[!ht]
-%\begin{figure}%
-%\vspace*{\fill}
-\centering
-\includegraphics[scale=0.75,width=0.75\columnwidth]{figures/Histogram.png}%
-\caption{ Histogram Distribution of 100 scores after exploration ($\epsilon$) is set to 0}%
-\label{fig:Visualization}%
-\end{figure}
-%\vfill}
 
 \label{sec:exp1}
 \begin{table}%
-\centering
+%\centering
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
 Hyper-parameter & Set 1  & Set 2 & Set 3 & Set 4  \\
@@ -143,23 +81,87 @@ Replay Memory Size & $2^16$ & $2^16$  & $2^16$  & $2^16$  \\
 \hline
 \end{tabular}
 \caption{Different set of hyper-parameters were tried}
-\label{tab:accuracy1}
+\label{tab:Hyper Parameter Set table}
 \end{table}
+%\vfill}
+\subsection{ Error Analysis}
+ After doing hyper-parameter tuning, our Agent was able to achieve average score of more than 200 quickly (at 435 episodes). 
+However for some episodes after 435 the rewards were not consistently more than 200 for 100 iterations. This is due to the speed 
+which is not getting reduced to zero (end state) although Lander is in landing zone.  The lunar lander is trying to bring itself to a zero velocity state and it tries to do so by applying thrust in opposite direction of landing horizontal velocity. In process of doing this, it applies alternate thrust from left and right side but is not able to bring the lander to complete halt to end the episode. Thus reducing the overall rewards and increases the number of frames. We observed that rewards are less than 200 when number of frames reaches the maximum value(1000). The Lunar Lander needs to learn how not to apply alternate left and right thrust to bring itself to a halt, taking no action will be the best action in this state. \\
 
-
-
-\subsection{ Model Evaluation}
-
-All aforementioned models are evaluated for 100 episodes for a fixed weights. 
+Also, we observe the variation is more in DQN and Double DQN as compared to Dueling DQN. We got the best performance on Set 4 with Dueling DQN model.
 
 \begin{figure}[!ht]
 %\begin{figure}%
 %\vspace*{\fill}
 \centering
-\includegraphics[scale=0.75,width=0.75\columnwidth]{figures/Picture2.png}%
-\caption{ Evaluating Performance of different DQN Networks}%
+\includegraphics[scale=0.50,width=0.50\columnwidth]{figures/Histogram.png}%
+\includegraphics[scale=0.50,width=0.50\columnwidth]{figures/Frames.png}%
+\caption{ Error Analysis : Distribution of scores for 100 episodes }%
+\label{fig:Error Analysis}%
+\end{figure}
+%\vfill}
+
+\subsection{ Comparision of DQN Variants}
+
+Comparision of learning for different variants of DQN. 
+ 
+\begin{figure}[!ht]
+%\begin{figure}%
+%\vspace*{\fill}
+\centering
+\includegraphics[scale=0.75,width=0.75\columnwidth]{figures/Picture1.png}%
+\includegraphics[scale=0.15,width=0.15\columnwidth]{figures/Legend.png}%
+\caption{ Rewards for different approaches on tensor board}%
 \label{fig:Visualization}%
 \end{figure}
 %\vfill}
 
+\label{sec:exp}
+\begin{table}%
+\centering
+\begin{tabular}{|l|c|c|}
+\hline
+Model & Avg. Score  & Number of episodes to reach 200 score  \\
+\hline
+Baseline & $-200$ & never \\
+\hline
+Linear Baseline & $-150$ & never \\
+\hline
+DQN & $123$ & $525$ \\
+\hline
+Double DQN & $220$ & $500$ \\
+\hline
+Dueling DQN & $225$ & $435$ \\
+\hline
+\end{tabular}
+\caption{Comparision of Results for different model implementations}
+\label{tab:Variants of DQN}
+\end{table}
 
+
+\subsection{ Model Evaluation}
+
+All aforementioned models are evaluated for 100 episodes for a fixed weights. \\  
+\begin{figure}[!ht]
+%\begin{figure}%
+%\vspace*{\fill}
+\centering
+\includegraphics[scale=0.50,width=0.50\columnwidth]{figures/Picture2.png}%
+\caption{ Evaluating Performance of different DQN Networks}%
+\label{fig:Different DQN Performance}%
+\end{figure}
+%\vfill}
+
+\subsection{ Agent on other Environments}
+We used the Agent to train on "CartPole-v1" game environment and were able to achieve good results. Our AI agent successfully learnt the game and consecutively won it. This proves the generality of the algorithm.
+
+\begin{figure}[!ht]
+%\begin{figure}%
+%\vspace*{\fill}
+\centering
+\includegraphics[scale=0.50,width=0.50\columnwidth]{figures/Cartpolev1.png}%
+\caption{ Agent learning CartPole Game}%
+\label{fig:Visualization}%
+\end{figure}
+%\vfill}

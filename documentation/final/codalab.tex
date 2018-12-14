@@ -1,7 +1,9 @@
 \section{Codalab Link}
 \label{sec:conclusion}
 
-https://worksheets.codalab.org/worksheets/0x3f15e8eba6af45828a26df3bc0e1f490/  \\
+https://worksheets.codalab.org/worksheets/0x1e3fc24cfa0d4ff3b492d0f47b6e0887/
+ \\
 command to run \\
 
-cl run :brain.py :hyperparameters.py :run.py :agent.py :environment.py :memory.py 'python3 run.py' -n sort-run --request-docker-image prabhjotrai/openai-gym:v1 \\
+cl run :brain.py :hyperparameters.py :main.py :agent.py :environment.py :memory.py initial_weights:0xc8fff4 'python3 main.py --should_learn=False --agent=Dueling --initial_weights=initial_weights' -n sort-run --request-docker-image prabhjotrai/openai-gym:v1 \\
+FIX ME Verify this once  \\
