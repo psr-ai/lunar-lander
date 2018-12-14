@@ -14,11 +14,10 @@ class Brain:
         self.model_ = self.create_model()
 
     def create_model(self):
-
         if self.type_of_agent == 'Dueling':
             inp = Input(shape=(self.number_of_states,))
-            layer_shared1 = Dense(128, activation='relu', kernel_initializer='he_uniform', use_bias=True)(inp)
-            layer_shared2 = Dense(64, activation='relu', kernel_initializer='he_uniform', use_bias=True)(layer_shared1)
+            layer_shared1 = Dense(NEURAL_NETWORK_LAYERS[0]['number_of_nodes'], activation=NEURAL_NETWORK_LAYERS[0]['activation'], kernel_initializer='he_uniform', use_bias=True)(inp)
+            layer_shared2 = Dense(NEURAL_NETWORK_LAYERS[1]['number_of_nodes'], activation=NEURAL_NETWORK_LAYERS[0]['activation'], kernel_initializer='he_uniform', use_bias=True)(layer_shared1)
             print("Shared layers initialized....")
 
             layer_v2 = Dense(1, activation='linear', kernel_initializer='he_uniform', use_bias=True)(layer_shared2)
@@ -52,7 +51,7 @@ class Brain:
 
         else:
             model = Sequential()
-
+            print('number of states', self.number_of_states)
             # Add 2 hidden layers with 64 nodes each
             for index, layer in enumerate(NEURAL_NETWORK_LAYERS):
                 if index == 0:

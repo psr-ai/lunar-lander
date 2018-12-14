@@ -3,9 +3,7 @@
 This project focuses on using reinforcement learning to achieve highest score in [LunarLander-v2](https://gym.openai.com/envs/LunarLander-v2/).
 This is a part of our coursework at SCPD course CS221 at Stanford University.
 
-### Codalab Instructions:
-
-### Setup Instructions:
+### Setup Instructions (For Mac):
 
 1. Make sure you have latest version of virtual env, `pip install --upgrade virtualenv`
 2. Make sure `python3` is installed on your machine. To check, type `python3`. If not available, setup from [here](https://www.python.org/downloads/).
@@ -20,15 +18,44 @@ You are ready! We recommend using [pycharm community edition](https://www.jetbra
 2. Go to `Project Interpreter` under `Project:lunar-lander`
 3. Click on settings cog wheel on right side of top Project Interpreter path specification and click on `Add...`. Choose existing environment and add the path of the one you created. [Here's](https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html) detailed description of how to configure venv in pycharm.
 
-### Google Cloud:
+### Setup Instructions (For Debian):
 
-1. Prior to any step, please make sure you have [dependencies](https://github.com/openai/gym#installing-everything) specific to debian machine for installing gym.
+1. Prior to any step, please make sure you have [dependencies](https://github.com/openai/gym#installing-everything) specific to debian machine for installing gym. Specifically for debian, make sure the dependencies below are installed by running the command
 
+````
 apt-get install libjpeg-dev cmake swig python-pyglet python3-opengl libboost-all-dev \
         libsdl2-2.0.0 libsdl2-dev libglu1-mesa libglu1-mesa-dev libgles2-mesa-dev \
         freeglut3 xvfb libav-tools
-        
-2. Use `requirements-google-cloud.txt` to install requirements specific to debian.
+````
+2. Follow steps 1 to 4 in the setup instructions for mac above.
+3. Install dependencies for this project by `pip3 install -r requirements-debian.txt --no-cache`. This will install all the dependencies inside the python virtual environment.
+4. Note: Pip will have installed matpltlib, there's an issue with matpltlib with mac os. Follow the steps [here](https://stackoverflow.com/a/21789908/5159284) to fix this issue.
+
+### Running instructions:
+
+The main.py file can be run through command line interface from the root of the directory. There are a number of parameters which can be controlled through arguments of the run command. An example command is:
+
+`python3 implementation/dqn/main.py --experiment_name=DoubleDQN_Set4 --agent=DDQN`
+
+The agent can be run in evaluation mode and learning mode.
+
+#### Generic flag description:
+
+1. `--agent` (String): Specifies which learning agent you would like to use. The values can be specified from `FullDQN`, `DDQN` 
+and `Dueling`. For example, if you want the agent to use Dueling Network Architecture learning approach, then specify `--agent=Dueling`.
+Default is `DDQN`.
+
+2. `--gpu` (Integer): Specifies which GPU to use, if you have multiple. For example: `--gpu=1`. Default is `0`.
+
+3. `--num_episodes` (Integer): Specifies the number of episodes. Default is `800`.
+
+4. `--should_render` (Boolean): Whether you want to render your episode. Default is `False`.
+
+5. 
+
+#### Learning Mode:
+
+
 
 ### Contributing:
 
