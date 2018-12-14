@@ -26,6 +26,7 @@ tf.app.flags.DEFINE_integer("num_episodes", 800, "Number of episodes to train. 0
 tf.app.flags.DEFINE_boolean("should_learn", True, "Available modes: learning / eval (no exploration). ")
 tf.app.flags.DEFINE_boolean("should_render", False, "render the Lander while running.")
 tf.app.flags.DEFINE_string("agent", "DDQN", "type of DQN Network to be performed")
+tf.app.flags.DEFINE_string("problem", "LunarLander-v2", "type of Open AI Gym Environment")
 
 # new added flags
 tf.app.flags.DEFINE_string("initial_weights", "weights_0750.hdf5","Take the model parameters for evaluation")
@@ -53,7 +54,8 @@ def write_summary(value, tag, summary_writer, global_step):
 
 def main(unused_argv):
 
-    PROBLEM = 'LunarLander-v2'
+    # PROBLEM = 'LunarLander-v2'
+    PROBLEM = FLAGS.problem
 
     env = Environment(PROBLEM, should_learn=FLAGS.should_learn, should_render=FLAGS.should_render)
 
