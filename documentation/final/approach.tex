@@ -7,12 +7,15 @@ We dedicated time to understand how the openai-gym is working internally. For th
 
 Basic framework is defined in Fig 1. The agent performs action($a$) on the environment. Performing the action on the environment returns reward($r$) and new state $s'$. Our agent then incorporates this information.
 
-\begin{figure}%
+\begin{figure}[!ht]
+%\begin{figure}%
+%\vspace*{\fill}
 \centering
-\includegraphics[scale=0.3]{reinforcement_framework.png}%
-\caption{Reinforcement Learning framework}%
-\label{fig:datastats}%
+\includegraphics[scale=0.75,width=0.75\columnwidth]{reinforcement_framework.png}%
+\caption{ Neural Network}%
+\label{fig:Visualization}%
 \end{figure}
+%\vfill}
 
 In such a model, for our problem, here is quick description of notations:
 \begin{enumerate}
@@ -110,8 +113,7 @@ Q(s, a) \xrightarrow{} r + \gamma \tilde{Q}(s', argmax_a Q(s', a))
 We could observe that Double DQN was more stable than Full DQN.
  
 \subsubsection{Dueling layer DQN}
-Q(s,a) represents the value of a given action $a$ chosen in state $s$, V(s) represents the value of the state independent of action. By definition, $V(s)=max_{a}Q(s,a)$. Thus, A(s,a) provides a relative measure of the utility of actions in s. The insight behind the dueling network architecture is that sometimes the exact choice of action does not matter so much, and so the state could be more explicitly modeled, independent of the action. There are two neural networks — one learns to provide an estimate of the value at every timestep, and the other calculates potential advantages of each action, and the two are combined for a single action-advantage Q function. We can achieve more robust estimates of state value by decoupling it from the necessity of being attached to specific actions.
- [FIXME https://arxiv.org/pdf/1511.06581.pdf]
+Q(s,a) represents the value of a given action $a$ chosen in state $s$, V(s) represents the value of the state independent of action. By definition, $V(s)=max_{a}Q(s,a)$. Thus, A(s,a) provides a relative measure of the utility of actions in s. The insight behind the dueling network architecture is that sometimes the exact choice of action does not matter so much, and so the state could be more explicitly modeled, independent of the action. There are two neural networks — one learns to provide an estimate of the value at every timestep, and the other calculates potential advantages of each action, and the two are combined for a single action-advantage Q function. We can achieve more robust estimates of state value by decoupling it from the necessity of being attached to specific actions.FIXME%\citep{Dueling}
 \newline
 \begin{equation}
 Q(s,a) \rightarrow A(s,a) + V(s)
@@ -136,7 +138,6 @@ Q(s,a; \theta, \alpha, \beta) \rightarrow V(s; \theta, \beta) + (A(s,a\theta, \a
 mean, instead of having to compensate any change to the
 optimal action’s advantage in  (13)
 \newline
- \textcolor{red}{\texttt{ Good to draw the neural network used by use for DUELDQN, something similar to figure1 of https://arxiv.org/pdf/1511.06581.pdf }}
  
  \subsection{Accuracy and Efficiency Trade-off}
 
