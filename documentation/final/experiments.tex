@@ -39,10 +39,10 @@ Iteration & Prabhjot & Abhishek & Amey   \\
 AVG & $63$& $69$ & $82$   \\
 \hline
 \end{tabular}
-\caption{Manual Oracle Scores}
+\caption{Human Oracle Scores}
 \label{tab:accuracy}
 \end{table}
-We also compared our results with the ones on OpenAI Gym Leaderboard Wiki.
+We also compared our results with the ones on OpenAI Gym Leaderboard Wiki. In general, the human oracle scores are less because speed of the LunarLander doesn't affect AI agent however it makes the game hard to play for humans.
 
 
 \subsection{Literature Review}
@@ -106,8 +106,8 @@ Dueling DQN & $225$ & $435$ \\
 
 
 
-\subsection{ Analysis}
-Error analysis: After doing hyper-parameter tunning, our Agent was able to achive average score of more than 200 quickly (at 435 episodes). 
+\subsection{ Error Analysis}
+ After doing hyper-parameter tuning, our Agent was able to achieve average score of more than 200 quickly (at 435 episodes). 
 However for some episodes after 435 the rewards were not consistently more than 200 for 100 iterations and we observe the variation is more in DQN and Double DQN as compared to Dueling DQN. We got the best performance on Set 4 with Dueling DQN model.
 
 \begin{figure}[!ht]
