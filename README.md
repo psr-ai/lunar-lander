@@ -33,9 +33,15 @@ apt-get install libjpeg-dev cmake swig python-pyglet python3-opengl libboost-all
 
 ### Running instructions:
 
+#### Simulator to play the code
+
+To run the simulator to play the game: `python3 play/keyboard_agent.py`. Press key `1` to rotate left, `2` to thrust upwards and `3` to rotate right.
+
+#### Deep Q-Learning
+
 The main.py file can be run through command line interface from the root of the directory. There are a number of parameters which can be controlled through arguments of the run command.
 
-#### Example running commands:
+##### Example running commands:
 
 To run the DDQN agent on given weights (`implementation/experiments/DoubleDQN_Set4/weights_0750.hdf5`):
 
@@ -49,7 +55,7 @@ To run the DDQN agent on `CartPole-v1` environment:
 
 `python3 implementation/dqn/main.py --experiment_name=new_experiment --agent=DDQN --should_learn=True --should_render=False --problem=CartPole-v1`
 
-#### Generic flag description:
+##### Generic flag description:
 
 1. `--agent` (String): Specifies which learning agent you would like to use. The values can be specified from `FullDQN`, `DDQN` , `Dueling` and `Linear`. For example, if you want the agent to use Dueling Network Architecture learning approach, then specify `--agent=Dueling`.
 Default is `DDQN`.
@@ -67,6 +73,10 @@ Default is `DDQN`.
 7. `--problem` (String): Can be any problem in open AI gym which is having vector based state description. Default is `lunar-lander` and we tried it on `CartPole-v1` too.
 
 8. `--initial_weights` (String): Name of the weights the model should use. Default is `weights_0750.hdf5`.
+
+#### Baselines
+
+Baselines can be run directly from the `implementation/baselines` directory. For example, run `python3 implementation/baselines/random_baseline.py` to run the random baseline.
 
 ### Contributing:
 
