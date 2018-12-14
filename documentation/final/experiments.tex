@@ -1,10 +1,27 @@
 \section{Experiments and Evaluation}
 In this section, we will present experimental results for all three different models presented in previous section as well as the visualization of training process.
 
-
 \subsection{ Baselines}
 The first baseline is purely a random approach. The Agent was taking random actions and this is just to make sure our agent outperforms a random one. 
 The second baseline is a simple linear classifier.
+
+\subsection{Oracle}
+
+We defined our oracle to be human playing score and the leaderboard scores. In order to create a simulation where humans could actually play the game and collect data, we used openai gym's implementation code. We recorded observations for the same after playing the game 10 times each. \\
+
+We also compared our results with the ones on OpenAI Gym Leaderboard Wiki.
+
+We found an implementation online running which we could play 
+
+// describe oracle (FIXME)
+
+// describe basic framework for rl learning (FIXME)
+
+// describe all three learning algorithms (FIXME)
+
+\subsection{Literature Review}
+
+Since the game of Lunar Lander is available on openAI gym platform, we came across various implementations of it online. We also found a wiki-driven leaderboard is available for a small amount of comparative benchmarks. [FIXME add ref]. We found [FIXME Allan Reyes ref] work to be well documented. Here the AI agent was trained using simple DQN. We started with the same approach of simple DQN, and after experimenting with hyperparameters we could achieve better results [FIXME mention results]. Later two more algorithms Double DQN and Duel DQN further enhanced the results. So far stand 2nd place on the leaderboard. 
 
 \subsection{ Training}
 In the most proposed models an initial learning rate of $10^{-4}$ was used to initialize training. Adam Optimizer is used for full duration of number of episodes. All models can be trained within 30-40 mins on CPU as input to the neural network is a state vector. All the models were trained for 800 episodes with batch size of 32 or 64. The number of episodes was choosen based on covergence of the loss, while batch size was choosen to be relatively small to get the benefits of stochasticity. We tried different epsilon decay rates to get the best results.
@@ -67,7 +84,15 @@ Dueling DQN & $225$ & $435$ \\
 Error analysis: After doing hyper-parameter tunning, our Agent was able to achive average score of more than 200 quickly (at 435 episodes). 
 However for some episodes after 435 the rewards were not consistently more than 200 for 100 iterations and we observe the variation is more in DQN and Double DQN as compared to Dueling DQN. We got the best performance on Set 4 with Dueling DQN model.
 
-
+\begin{figure}[!ht]
+%\begin{figure}%
+%\vspace*{\fill}
+\centering
+\includegraphics[scale=0.75,width=0.75\columnwidth]{figures/Histogram.png}%
+\caption{ Histogram (FIXME)}%
+\label{fig:Visualization}%
+\end{figure}
+%\vfill}
 
 \label{sec:exp1}
 \begin{table}%

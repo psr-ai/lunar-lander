@@ -133,11 +133,34 @@ As we know, $Q$ value is defined as the expected reward that we get following ac
 
 // Describe all equations (Amey)
 
-\subsection{Accuracy and Efficiency}
+\subsection{Accuracy and Efficiency Trade-off}
 
+For our solutions, accuracy can be considered as consistency in getting more than 200 scores over a period of episodes. And efficiency would be how sooner we can get such weights for which the agent scores more than 200 scores. \\
 
+When we train for more number of episodes (low efficiency), we get high accuracy (drop between consecutive episodes is lesser). And vice versa, if we stop early, we are highly efficient but accuracy is lower.
 
+\subsection{Implementation choices}
 
+The choice of state was based on the actual configuration of the lunar lander, and we learnt weights for each feature in the state. Another choice could have been training on image data, feeding images per episode and learning on gained rewards. Since this would have been computationally expensive, we chose the former approach to explicit definition of state space and learning it's weights. \\
+
+For running different algorithms, we created separate classes so that the code is not only modularized, but can also be run easily on different openai environments, learning algorithms can be easily changed etc. Here's a quick description of different classes:
+
+\begin{enumerate}
+\item \textbf{Brain:} Class which contains keras models, updates the weights through train function and performs prediction based on learnt weights. 
+\item \textbf{Memory:} Class which appends observations until maximum memory length and samples based on given batch size hyperparameter
+\item \textbf{Agent:} Our agent class which explores and exploits based on fixed hyperparameters(gamma, epsilon max, epsilon min and decay) and passed arguments. This is also the class where we are performing the replay action and training the agent's brain instance. It also contains another instance of memory class which is used in replay while sampling.
+\item \textbf{Environment:} Class which runs the episode on given agent and asks the agent to observe and replay whenever the agent is trying to learn on episodes. It returns the information on how much reward was observed on each episode and for how long each episode ran
+\end{enumerate}
+
+\subsection{Baseline}
+
+\subsection{Oracle}
+
+We defined our oracle to be human playing score and the leaderboard scores. In order to create a simulation where humans could actually play the game and collect data, we used openai gym's implementation code. We recorded observations for the same after playing the game 10 times each. \\
+
+We also compared our results with the ones on OpenAI Gym Leaderboard Wiki.
+
+We found an implementation online running which we could play 
 
 // describe oracle
 
