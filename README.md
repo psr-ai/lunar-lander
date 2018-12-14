@@ -88,4 +88,4 @@ Please follow the following guidelines to contribute.
 
 ### Contributors:
 
-Abhishek Bharani, Amey Naik and [Prabhjot Singh Rai](www.github.com/raiprabh).
+Abhishek Bharani, Amey Naik and [Prabhjot Singh Rai](https://www.prabhjotrai.com).
