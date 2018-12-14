@@ -1,0 +1,110 @@
+Beginning Training Episodes...
+----------HyperParameters Used----------
+----------Batch Size  :64
+----------LearningRate:0.000100
+----------Discount(Gamma)    :0.990000
+----------Epsilon Min :0.010000
+----------Epsilon Max :1.000000
+----------Epsilon Decau :0.995000
+----------Min Memory Length    :64
+----------Max Memory Length :65536
+episode: 0, score: 242.52147103782877, average_score : 242.52147103782877, number of frames: 308, epsilon: 0
+episode: 1, score: 303.97243845427454, average_score : 273.24695474605164, number of frames: 299, epsilon: 0
+episode: 2, score: 296.1553185278007, average_score : 280.88307600663467, number of frames: 289, epsilon: 0
+episode: 3, score: 274.051582089241, average_score : 279.1752025272863, number of frames: 274, epsilon: 0
+episode: 4, score: 279.69250103407353, average_score : 279.2786622286437, number of frames: 258, epsilon: 0
+episode: 5, score: 237.26805201549527, average_score : 272.2768938597856, number of frames: 305, epsilon: 0
+episode: 6, score: 252.35185753371346, average_score : 269.43046009891816, number of frames: 254, epsilon: 0
+episode: 7, score: 277.6402635541417, average_score : 270.4566855308211, number of frames: 288, epsilon: 0
+episode: 8, score: 275.9084077851315, average_score : 271.0624324479667, number of frames: 266, epsilon: 0
+episode: 9, score: 264.1300878229897, average_score : 270.36919798546904, number of frames: 272, epsilon: 0
+episode: 10, score: 226.54405154440963, average_score : 266.38509376355455, number of frames: 254, epsilon: 0
+episode: 11, score: 279.79165229204807, average_score : 267.50230697426235, number of frames: 265, epsilon: 0
+episode: 12, score: 242.95983192132388, average_score : 265.61442427788245, number of frames: 241, epsilon: 0
+episode: 13, score: 295.70218993988925, average_score : 267.7635503965972, number of frames: 220, epsilon: 0
+episode: 14, score: 273.60911014142613, average_score : 268.15325437958586, number of frames: 274, epsilon: 0
+episode: 15, score: 250.349490959759, average_score : 267.0405191658466, number of frames: 255, epsilon: 0
+episode: 16, score: 116.1158911761714, average_score : 258.1625998723363, number of frames: 1000, epsilon: 0
+episode: 17, score: 290.97383426149975, average_score : 259.98544622728986, number of frames: 250, epsilon: 0
+episode: 18, score: 276.6823493117713, average_score : 260.86423060015727, number of frames: 225, epsilon: 0
+episode: 19, score: 294.1383137732362, average_score : 262.5279347588112, number of frames: 279, epsilon: 0
+episode: 20, score: 248.7870363370539, average_score : 261.87360626253707, number of frames: 394, epsilon: 0
+episode: 21, score: 287.89846690353045, average_score : 263.0565544734913, number of frames: 263, epsilon: 0
+episode: 22, score: 254.2502414588038, average_score : 262.67367129893967, number of frames: 285, epsilon: 0
+episode: 23, score: 293.27170292771075, average_score : 263.94858928347185, number of frames: 268, epsilon: 0
+episode: 24, score: 289.6136656475675, average_score : 264.97519233803564, number of frames: 268, epsilon: 0
+episode: 25, score: 236.83430301333254, average_score : 263.89285044093174, number of frames: 271, epsilon: 0
+episode: 26, score: 262.7575435091006, average_score : 263.85080203604906, number of frames: 237, epsilon: 0
+episode: 27, score: 278.63998046706314, average_score : 264.37898698001385, number of frames: 248, epsilon: 0
+episode: 28, score: 293.2167404982698, average_score : 265.37339227374684, number of frames: 272, epsilon: 0
+episode: 29, score: 269.75551403340745, average_score : 265.5194629990688, number of frames: 271, epsilon: 0
+episode: 30, score: 291.432385915758, average_score : 266.3553637383169, number of frames: 286, epsilon: 0
+episode: 31, score: 125.26065488763905, average_score : 261.94615408673315, number of frames: 1000, epsilon: 0
+episode: 32, score: 217.55289040435432, average_score : 260.60090367211563, number of frames: 344, epsilon: 0
+episode: 33, score: 238.75469187019428, average_score : 259.95836803088264, number of frames: 255, epsilon: 0
+episode: 34, score: 236.203528996267, average_score : 259.2796583441793, number of frames: 247, epsilon: 0
+episode: 35, score: 281.905154579064, average_score : 259.90814435070394, number of frames: 241, epsilon: 0
+episode: 36, score: 270.3326452825023, average_score : 260.1898876191309, number of frames: 286, epsilon: 0
+episode: 37, score: 243.1234209636033, average_score : 259.7407700755644, number of frames: 245, epsilon: 0
+episode: 38, score: 258.6939175299218, average_score : 259.7139277025992, number of frames: 266, epsilon: 0
+episode: 39, score: 266.0961140629236, average_score : 259.87348236160733, number of frames: 240, epsilon: 0
+episode: 40, score: 255.48068961613907, average_score : 259.7663410751325, number of frames: 315, epsilon: 0
+episode: 41, score: 287.52840488236575, average_score : 260.4273425943523, number of frames: 285, epsilon: 0
+episode: 42, score: 259.25665026980414, average_score : 260.4001171914559, number of frames: 275, epsilon: 0
+episode: 43, score: 282.81840972085786, average_score : 260.90962383985135, number of frames: 290, epsilon: 0
+episode: 44, score: 266.52026238898515, average_score : 261.0343046964988, number of frames: 258, epsilon: 0
+episode: 45, score: 296.17254079844815, average_score : 261.79817939436725, number of frames: 233, epsilon: 0
+episode: 46, score: 263.4758454641732, average_score : 261.83387441712904, number of frames: 267, epsilon: 0
+episode: 47, score: 269.9125575352085, average_score : 262.0021803154224, number of frames: 277, epsilon: 0
+episode: 48, score: 300.59551657771584, average_score : 262.78979942281615, number of frames: 302, epsilon: 0
+episode: 49, score: 302.4234926848411, average_score : 263.58247328805663, number of frames: 209, epsilon: 0
+episode: 50, score: 277.41749175962497, average_score : 263.85374816004816, number of frames: 280, epsilon: 0
+episode: 51, score: 231.484225982258, average_score : 263.23125734893677, number of frames: 279, epsilon: 0
+episode: 52, score: 223.36478517524102, average_score : 262.47905976075384, number of frames: 241, epsilon: 0
+episode: 53, score: 275.44637316485205, average_score : 262.7191951941631, number of frames: 258, epsilon: 0
+episode: 54, score: 228.73881467149127, average_score : 262.10137009375086, number of frames: 236, epsilon: 0
+episode: 55, score: 244.44044027533758, average_score : 261.7859963469935, number of frames: 247, epsilon: 0
+episode: 56, score: 263.0679244104457, average_score : 261.80848631301893, number of frames: 275, epsilon: 0
+episode: 57, score: 231.63344273494488, average_score : 261.2882269409832, number of frames: 562, epsilon: 0
+episode: 58, score: 218.57399298454857, average_score : 260.56425687392493, number of frames: 504, epsilon: 0
+episode: 59, score: 280.87699883623213, average_score : 260.90280257329675, number of frames: 239, epsilon: 0
+episode: 60, score: 267.51482090472996, average_score : 261.01119631643496, number of frames: 262, epsilon: 0
+episode: 61, score: 259.2813981560463, average_score : 260.98329634610616, number of frames: 254, epsilon: 0
+episode: 62, score: 256.73110539693846, average_score : 260.9158012516749, number of frames: 266, epsilon: 0
+episode: 63, score: 290.9395390648264, average_score : 261.3849221550055, number of frames: 274, epsilon: 0
+episode: 64, score: 282.06094143700113, average_score : 261.7030147593439, number of frames: 264, epsilon: 0
+episode: 65, score: 267.40435395646074, average_score : 261.7893986865729, number of frames: 298, epsilon: 0
+episode: 66, score: 267.113297669629, average_score : 261.86885986542444, number of frames: 380, epsilon: 0
+episode: 67, score: 237.97242138282482, average_score : 261.51744165244503, number of frames: 272, epsilon: 0
+episode: 68, score: 291.18379886965283, average_score : 261.94738885849154, number of frames: 306, epsilon: 0
+episode: 69, score: 270.34565183279295, average_score : 262.06736404383867, number of frames: 276, epsilon: 0
+episode: 70, score: 278.093664809732, average_score : 262.2930865898371, number of frames: 289, epsilon: 0
+episode: 71, score: 295.2192085419722, average_score : 262.75039383917243, number of frames: 268, epsilon: 0
+episode: 72, score: 287.6946946646375, average_score : 263.0920965902062, number of frames: 274, epsilon: 0
+episode: 73, score: 227.13879080271923, average_score : 262.60624110659154, number of frames: 254, epsilon: 0
+episode: 74, score: 286.83853506574934, average_score : 262.9293383593803, number of frames: 274, epsilon: 0
+episode: 75, score: 286.1856271530197, average_score : 263.2353421592966, number of frames: 276, epsilon: 0
+episode: 76, score: 266.42693351231816, average_score : 263.2767913976475, number of frames: 241, epsilon: 0
+episode: 77, score: 277.7005213703162, average_score : 263.46171101268175, number of frames: 297, epsilon: 0
+episode: 78, score: 227.57443615703647, average_score : 263.00744171071153, number of frames: 248, epsilon: 0
+episode: 79, score: 257.5813702579101, average_score : 262.9396158175515, number of frames: 245, epsilon: 0
+episode: 80, score: 255.39734035509164, average_score : 262.8465013056693, number of frames: 284, epsilon: 0
+episode: 81, score: 241.73440777592162, average_score : 262.5890367504285, number of frames: 238, epsilon: 0
+episode: 82, score: 269.9539213089272, average_score : 262.677770299326, number of frames: 271, epsilon: 0
+episode: 83, score: 96.00541994456921, average_score : 260.6935756522456, number of frames: 1000, epsilon: 0
+episode: 84, score: 224.23153068221058, average_score : 260.264610417304, number of frames: 243, epsilon: 0
+episode: 85, score: 280.51004909516945, average_score : 260.5000224949536, number of frames: 340, epsilon: 0
+episode: 86, score: 250.57087010941044, average_score : 260.38589430661403, number of frames: 311, epsilon: 0
+episode: 87, score: 251.39735277681916, average_score : 260.28375178923, number of frames: 251, epsilon: 0
+episode: 88, score: 264.4304717003095, average_score : 260.3303441477815, number of frames: 278, epsilon: 0
+episode: 89, score: 249.4897862950386, average_score : 260.2098935049732, number of frames: 248, epsilon: 0
+episode: 90, score: 240.65285327227838, average_score : 259.9949809749436, number of frames: 262, epsilon: 0
+episode: 91, score: 288.93636592721003, average_score : 260.30956124616387, number of frames: 300, epsilon: 0
+episode: 92, score: 245.43748722593563, average_score : 260.1496464717528, number of frames: 247, epsilon: 0
+episode: 93, score: 254.398206785091, average_score : 260.0884609431713, number of frames: 255, epsilon: 0
+episode: 94, score: 278.453778850681, average_score : 260.28178007903983, number of frames: 257, epsilon: 0
+episode: 95, score: 255.65004615759239, average_score : 260.23353285069146, number of frames: 256, epsilon: 0
+episode: 96, score: 287.4435737123251, average_score : 260.5140487358629, number of frames: 275, epsilon: 0
+episode: 97, score: 253.7404160587774, average_score : 260.4449300350763, number of frames: 272, epsilon: 0
+episode: 98, score: 269.00300298993704, average_score : 260.5313752164385, number of frames: 261, epsilon: 0
+episode: 99, score: 270.5042762936845, average_score : 260.631104227211, number of frames: 233, epsilon: 0

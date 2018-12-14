@@ -3,6 +3,8 @@
 This project focuses on using reinforcement learning to achieve highest score in [LunarLander-v2](https://gym.openai.com/envs/LunarLander-v2/).
 This is a part of our coursework at SCPD course CS221 at Stanford University.
 
+### Codalab Instructions:
+
 ### Setup Instructions:
 
 1. Make sure you have latest version of virtual env, `pip install --upgrade virtualenv`
