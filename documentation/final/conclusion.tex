@@ -1,2 +1,8 @@
 \section{Conclusion}
 \label{sec:conclusion}
+
+The project successfully completes the original scope, having produced a working reinforcement learning agent and providing a study and comparison of variants of DQN. DQN was applied effectively on this specific problem, and produced successful results. The success strengthens the use and generality of this algorithm on other problems. (FIXME add  cartpole)
+
+An agent with too high of a discount was unable to credit actions to success, far enough in the future. Simply put, it was too myopic. As a result, agents learned how to hover, but never learned how to land. We also observed effect of having smaller replay-memory size. Sometimes a drop in the rewards after model learns is because after many consecutive successes, the replay buffer won't have many failure cases to train on. So, it used to 'forget' how to recover from many failure cases.
+
+The DQN variants we tried gave very good results once the hyperparameters were tuned correctly. When implemented the algorithm code in a modularized format, we could easily change the parameters and play with it. Also, minimal tweaks were required for each the DQN variant. Not much of hyperparameter tuning was required across DQN variants. Given more time and resources, the agent could have been tuned via a more exhaustive grid search. After some literature review, we thought DQN could also have been enhanced with prioritized replay however, we did not observe any improvement. Rather the learning time was about 1000 episodes(FIXME). Lastly, the more advanced Duel Q-learning learner undoubtedly increased the accuracy of the reinforcement learning agent. 
