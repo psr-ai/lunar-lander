@@ -1,5 +1,11 @@
 \section{Task Definition}
 \label{intro}
 
-The task accomplished by this project is to build an AI agent which would land with constant high rewards on a landing pad, defined by Box2D Lunar Lander available on OpenAI gym. This is accomplished by Reinforcement Learning, particularly by applying different Q-learning techniques. This project has explored Full DQN, Double DQN and Dueling Network Architecture (Dueling DQN), their performances in "solving" the game. We have considered a game to be solved when the agent starts getting average reward of 200 over 100 consecutive episodes. Moreover, performances have also been compared with baselines and oracle.
+The task accomplished by this project is to build an AI agent which would land with constant high rewards on a landing pad, defined by Box2D Lunar Lander available on OpenAI gym. This is accomplished by Reinforcement Learning, particularly by applying different Deep Q-learning techniques. This project has explored Full DQN, Double DQN and Dueling DQN, to solve the game. We have considered the game as solved when the agent starts getting average reward of 200 over 100 consecutive episodes. Moreover, performances of the agent is also been compared with baselines and oracle. \\
+
+Since this problem involves high dimension and continuous state
+space, standard Q-learning cannot solve this problem unless some amount of discretization is done. Due to above mentioned difficulties, Deep Q-Network (DQN) was the choice. We plan to explore different variants of DQN (particularly DQN , Double DQN, and
+Dueling network architecture).
+
+
 
