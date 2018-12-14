@@ -1,7 +1,7 @@
 # Lunar Lander (CS221 Project)
 
 This project focuses on using reinforcement learning to achieve highest score in [LunarLander-v2](https://gym.openai.com/envs/LunarLander-v2/).
-This is a part of our coursework at SCPD course CS221 at Stanford University.
+This is a part of our coursework at SCPD course CS221 at Stanford University. Visit the [website](http://www.prabhjotrai.com/lunar-lander) to check some videos, and view the [worksheet](https://worksheets.codalab.org/worksheets/0x1e3fc24cfa0d4ff3b492d0f47b6e0887/) on codalab.
 
 ### Setup Instructions (For Mac):
 
@@ -33,16 +33,25 @@ apt-get install libjpeg-dev cmake swig python-pyglet python3-opengl libboost-all
 
 ### Running instructions:
 
-The main.py file can be run through command line interface from the root of the directory. There are a number of parameters which can be controlled through arguments of the run command. An example command is:
+The main.py file can be run through command line interface from the root of the directory. There are a number of parameters which can be controlled through arguments of the run command.
 
-`python3 implementation/dqn/main.py --experiment_name=DoubleDQN_Set4 --agent=DDQN`
+#### Example running commands:
 
-The agent can be run in evaluation mode and learning mode.
+To run the DDQN agent on given weights (`implementation/experiments/DoubleDQN_Set4/weights_0750.hdf5`):
+
+`python3 implementation/dqn/main.py --experiment_name=DoubleDQN_Set4 --agent=DDQN --should_learn=False --should_render=False --initial_weights=weights_0750.hdf5`
+
+To run the DDQN agent and make it learn and output the weights to `new_experiment` directory:
+
+`python3 implementation/dqn/main.py --experiment_name=new_experiment --agent=DDQN --should_learn=True --should_render=False`
+
+To run the DDQN agent on `CartPole-v1` environment:
+
+`python3 implementation/dqn/main.py --experiment_name=new_experiment --agent=DDQN --should_learn=True --should_render=False --problem=CartPole-v1`
 
 #### Generic flag description:
 
-1. `--agent` (String): Specifies which learning agent you would like to use. The values can be specified from `FullDQN`, `DDQN` 
-and `Dueling`. For example, if you want the agent to use Dueling Network Architecture learning approach, then specify `--agent=Dueling`.
+1. `--agent` (String): Specifies which learning agent you would like to use. The values can be specified from `FullDQN`, `DDQN` , `Dueling` and `Linear`. For example, if you want the agent to use Dueling Network Architecture learning approach, then specify `--agent=Dueling`.
 Default is `DDQN`.
 
 2. `--gpu` (Integer): Specifies which GPU to use, if you have multiple. For example: `--gpu=1`. Default is `0`.
@@ -51,11 +60,13 @@ Default is `DDQN`.
 
 4. `--should_render` (Boolean): Whether you want to render your episode. Default is `False`.
 
-5. 
+5. `--should_learn` (Boolean): Whether the agent should learn or should just exploit on given weights. Default is `True`.
 
-#### Learning Mode:
+6. `--experiment_name` (String): Unique name for your experiment. This will create a directory by this name in the experiments/ directory, which will hold all data related to this experiment. Default is `NewExperiment`.
 
+7. `--problem` (String): Can be any problem in open AI gym which is having vector based state description. Default is `lunar-lander` and we tried it on `CartPole-v1` too.
 
+8. `--initial_weights` (String): Name of the weights the model should use. Default is `weights_0750.hdf5`.
 
 ### Contributing:
 
@@ -63,7 +74,7 @@ Please follow the following guidelines to contribute.
 
 1. Do not commit on `master` directly, although everyone has permission.
 2. Create a new branch from `master`, make changes and open a PR.
-3. Get it reviewed by contributers and we merge it in collaboration.
+3. Get it reviewed by contributors and we merge it in collaboration.
 
 ### Contributors:
 
