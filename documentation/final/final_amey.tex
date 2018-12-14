@@ -102,8 +102,7 @@ Q(s, a) \xrightarrow{} r + \gamma \tilde{Q}(s', argmax_a Q(s', a))
  \textcolor{red}{\texttt{ how DDQN helped our lunar Lander game. were the values more stable?}}
  
 \section*{5 - Dueling DQN }
- \begin{itemize}
-\item Dueling DQN - separate the estimators
+Dueling DQN - separate the estimators
 one that estimates the state value V(s)
 one that estimates the advantage for each action A(s,a)
 \begin{equation}
@@ -112,7 +111,35 @@ Q(s,a) \rightarrow A(s,a) + V(s)
 \begin{equation}
 Q(s,a; \theta, \alpha, \beta) \rightarrow V(s; \theta, \beta) + (A(s,a\theta, \alpha) - \frac{1}{A} \sum_{a'}^{} A(s,a';\theta,\alpha ))
 \end{equation}
-\end{itemize}
+\textbf{Theory}:
+Q(s,a) represents the value of a given action a chosen in state s, V(s) represents the value of the state independent of action. By definition, $V(s)=max_{a}Q(s,a)$. Thus, A(s,a) provides a relative measure of the utility of actions in s. The insight behind the dueling network architecture is that sometimes the exact choice of action does not matter so much, and so the state could be more explicitly modeled, independent of the action. There are two neural networks — one learns to provide an estimate of the value at every timestep, and the other calculates potential advantages of each action, and the two are combined for a single action-advantage Q function. We can achieve more robust estimates of state value by decoupling it from the necessity of being attached to specific actions.
+ \textcolor{red}{\texttt{ add this as reference https://arxiv.org/pdf/1511.06581.pdf }}
+\newline
+\begin{equation}
+Q(s,a) \rightarrow A(s,a) + V(s)
+\end{equation}
+The above equation is unidentifiable in the sense that given Q
+we cannot recover V and A uniquely. This lack of identifiability is mirrored by
+poor practical performance when this equation is used directly. To address this issue of identifiability, we can force the advantage
+function estimator to have zero advantage at the
+chosen action. That is, we let the last module of the network
+implement the forward mapping.
+\begin{equation}
+Q(s,a; \theta, \alpha, \beta) \rightarrow V(s; \theta, \beta) + (A(s,a\theta, \alpha) - max_{a' \epsilon |A|} A(s,a';\theta,\alpha ))
+\end{equation}
+An alternative module replaces the max operator with an
+average. On the one hand this loses the original semantics of V and
+A because they are now off-target by a constant, but on
+the other hand it increases the stability of the optimization:
+with 
+\begin{equation}
+Q(s,a; \theta, \alpha, \beta) \rightarrow V(s; \theta, \beta) + (A(s,a\theta, \alpha) - \frac{1}{A} \sum_{a'}^{} A(s,a';\theta,\alpha ))
+\end{equation}
+ the advantages only need to change as fast as the
+mean, instead of having to compensate any change to the
+optimal action’s advantage in  \textcolor{red}{\texttt{ FIX eq number }}
+\newline
+ \textcolor{red}{\texttt{ Good to draw the neural network used by use for DUELDQN, something similar to figure1 of https://arxiv.org/pdf/1511.06581.pdf }}
 
 \section*{3 - Compare with Leaderboard}
 \begin{itemize}
