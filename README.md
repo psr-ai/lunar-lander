@@ -55,7 +55,10 @@ To run the DDQN agent on `CartPole-v1` environment:
 
 `python3 implementation/dqn/main.py --experiment_name=new_experiment --agent=DDQN --should_learn=True --should_render=False --problem=CartPole-v1`
 
-##### Generic flag description:
+##### Parameters description:
+
+In order to change the hyperparameters, please visit the `implementation/dqn/hyperparameters.py` file directly and modify it. For the rest of the parameters,
+they can be controlled directly from the command line: 
 
 1. `--agent` (String): Specifies which learning agent you would like to use. The values can be specified from `FullDQN`, `DDQN` , `Dueling` and `Linear`. For example, if you want the agent to use Dueling Network Architecture learning approach, then specify `--agent=Dueling`.
 Default is `DDQN`.
@@ -69,10 +72,16 @@ Default is `DDQN`.
 5. `--should_learn` (Boolean): Whether the agent should learn or should just exploit on given weights. Default is `True`.
 
 6. `--experiment_name` (String): Unique name for your experiment. This will create a directory by this name in the experiments/ directory, which will hold all data related to this experiment. Default is `NewExperiment`.
+When exploring, you should give an experiment name corresponding to existing folder name under `implementation/experiments`.
 
 7. `--problem` (String): Can be any problem in open AI gym which is having vector based state description. Default is `lunar-lander` and we tried it on `CartPole-v1` too.
 
 8. `--initial_weights` (String): Name of the weights the model should use. Default is `weights_0750.hdf5`.
+
+#### Important Note
+
+When the agent is not learning and only exploiting (`--should_learn=False`), by default, the `--experiment_name` should end with `Set4`, precisely being: `--experiment_name=[agent-type]_Set4`.
+ This is because the hyperparameters are set to this set's configuration. Of course, feel free to change the hyperparameters to other sets, as described in `final.pdf`. 
 
 #### Baselines
 
