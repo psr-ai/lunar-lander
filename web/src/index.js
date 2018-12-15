@@ -15,9 +15,9 @@ const hist = createBrowserHistory();
 ReactDOM.render(
   <Router history={hist}>
     <Switch>
-      <Route path="/admin" render={props => <AdminLayout {...props} />} />
-      <Route path="/rtl" render={props => <RTLLayout {...props} />} />
-      <Redirect from="/" to="/admin/dashboard" />
+      <Redirect exact from="/lunar-lander" to="/lunar-lander/performance" />
+      <Route path="/lunar-lander" render={props => <AdminLayout {...props} />} />
+      <Redirect from="/" to="/lunar-lander/performance" />
     </Switch>
   </Router>,
   document.getElementById("root")

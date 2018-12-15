@@ -62,7 +62,7 @@ class Admin extends React.Component {
   };
   getRoutes = routes => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/admin") {
+      if (prop.layout === "/lunar-lander") {
         return (
           <Route
             path={prop.layout + prop.path}
@@ -100,8 +100,8 @@ class Admin extends React.Component {
             bgColor={this.state.backgroundColor}
             logo={{
               outterLink: "https://www.creative-tim.com/",
-              text: "Creative Tim",
-              imgSrc: logo
+              text: "Lunar Lander",
+              imgSrc: 'https://gym.openai.com/assets/dist/home/header/home-icon-54c30e2345.svg'
             }}
             toggleSidebar={this.toggleSidebar}
           />
