@@ -58,7 +58,7 @@ class Performance extends React.Component {
                             Full DQN
                           </span>
                           <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-single-02" />
+                            FDQN
                           </span>
                         </Button>
                         <Button
@@ -80,7 +80,7 @@ class Performance extends React.Component {
                             Dueling
                           </span>
                           <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-gift-2" />
+                            Duel
                           </span>
                         </Button>
                         <Button
@@ -102,7 +102,7 @@ class Performance extends React.Component {
                             Double DQN
                           </span>
                           <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-tap-02" />
+                            DDQN
                           </span>
                         </Button>
                       </ButtonGroup>
