@@ -14,7 +14,9 @@ class Footer extends React.Component {
           <div className="copyright">
             <Nav>
               <NavItem>
-                <NavLink href="javascript:void(0)">PRABHJOT RAI</NavLink>
+                <NavLink onClick={() => {
+                  window.open('https://www.prabhjotrai.com')
+                }}>PRABHJOT RAI</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="javascript:void(0)">ABHISHEK BHARANI</NavLink>

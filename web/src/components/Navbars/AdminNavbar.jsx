@@ -125,7 +125,9 @@ class AdminNavbar extends React.Component {
                     <p className="d-lg-none">Github</p>
                   </DropdownToggle>
                   <DropdownMenu className="dropdown-navbar" right tag="ul">
-                    <NavLink tag="li">
+                    <NavLink tag="li" onClick={() => {
+                      window.open('https://github.com/raiprabh')
+                    }}>
                       <DropdownItem className="nav-item">Prabhjot Singh Rai</DropdownItem>
                     </NavLink>
                     <NavLink tag="li">
