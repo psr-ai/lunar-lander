@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/lunar-lander/precache-manifest.351d1598fc4ef9ed22e9901ff851cd77.js"
+  "/lunar-lander/precache-manifest.05c2766c37643cee9557772ee183c8cc.js"
 );
 
 workbox.clientsClaim();
