@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/lunar-lander/static/media/emilyz.9fcf69e5.jpg"
   },
   {
-    "revision": "525c4124716dbd4bdef5",
+    "revision": "c2910b2a2e290019bccc",
     "url": "/lunar-lander/static/css/main.9279068e.chunk.css"
   },
   {
@@ -28,12 +28,16 @@ self.__precacheManifest = [
     "url": "/lunar-lander/static/media/game_env.c66f3cb0.png"
   },
   {
-    "revision": "525c4124716dbd4bdef5",
-    "url": "/lunar-lander/static/js/main.525c4124.chunk.js"
+    "revision": "c2910b2a2e290019bccc",
+    "url": "/lunar-lander/static/js/main.c2910b2a.chunk.js"
   },
   {
     "revision": "bd6820f1a4015e9645e470ea8e7b1501",
     "url": "/lunar-lander/static/media/anime3.bd6820f1.png"
+  },
+  {
+    "revision": "03ef1918e505c3e3471f9369ef7a638f",
+    "url": "/lunar-lander/static/media/nucleo.03ef1918.eot"
   },
   {
     "revision": "f0b489a5dbbff08833d21024f9fcbd4e",
@@ -44,15 +48,11 @@ self.__precacheManifest = [
     "url": "/lunar-lander/static/media/nucleo.5987dd12.woff2"
   },
   {
-    "revision": "03ef1918e505c3e3471f9369ef7a638f",
-    "url": "/lunar-lander/static/media/nucleo.03ef1918.eot"
-  },
-  {
     "revision": "7bc9d4b1e7cc7261bc21",
     "url": "/lunar-lander/static/css/1.e7b7831c.chunk.css"
   },
   {
-    "revision": "22bc0821ba879c84ea6e51dd0a74b453",
+    "revision": "2e1041e493c5997763438916d93b455f",
     "url": "/lunar-lander/index.html"
   }
 ];

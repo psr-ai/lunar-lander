@@ -1,7 +1,7 @@
 {
   "main.css": "/lunar-lander/static/css/main.9279068e.chunk.css",
-  "main.js": "/lunar-lander/static/js/main.525c4124.chunk.js",
-  "main.js.map": "/lunar-lander/static/js/main.525c4124.chunk.js.map",
+  "main.js": "/lunar-lander/static/js/main.c2910b2a.chunk.js",
+  "main.js.map": "/lunar-lander/static/js/main.c2910b2a.chunk.js.map",
   "static/css/1.e7b7831c.chunk.css": "/lunar-lander/static/css/1.e7b7831c.chunk.css",
   "static/js/1.7bc9d4b1.chunk.js": "/lunar-lander/static/js/1.7bc9d4b1.chunk.js",
   "static/js/1.7bc9d4b1.chunk.js.map": "/lunar-lander/static/js/1.7bc9d4b1.chunk.js.map",
@@ -15,6 +15,6 @@
   "static/css/main.9279068e.chunk.css.map": "/lunar-lander/static/css/main.9279068e.chunk.css.map",
   "static/css/1.e7b7831c.chunk.css.map": "/lunar-lander/static/css/1.e7b7831c.chunk.css.map",
   "index.html": "/lunar-lander/index.html",
-  "precache-manifest.29413bd2b6ef81fafec36a00ea5fd811.js": "/lunar-lander/precache-manifest.29413bd2b6ef81fafec36a00ea5fd811.js",
+  "precache-manifest.027557212e683056cf1d1358a49dd24b.js": "/lunar-lander/precache-manifest.027557212e683056cf1d1358a49dd24b.js",
   "service-worker.js": "/lunar-lander/service-worker.js"
 }
