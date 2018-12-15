@@ -35,7 +35,11 @@ Q(s, a) \xrightarrow{} r + \gamma max_a \tilde{Q}(s', a)
 \end{equation}
 
 After several steps, the target network is updated, just by copying the weights from the current network. To be effective, the interval between updates has to be large enough to leave enough time for the original network to converge. \newline
-For lunar lander, we update target model after every episode.
+For lunar lander, we update target model after every episode. 
+We used the Neural Network shown in Fig 2 for Lunar Lander.
+
+\subsubsection{Exploration}
+To find out that actions which might be better then others, we use $\epsilon$ greedy policy. This policy behaves greedily most of the time, but chooses a random action with probability $\epsilon$.
 
 \subsection{Improvements to DQN}
 
@@ -46,7 +50,7 @@ For lunar lander, we update target model after every episode.
 %\vspace*{\fill}
 \centering
 \includegraphics[scale=0.35,width=0.35\columnwidth]{figures/NN.png}%
-\caption{ DQN with two layers used to model the agent}%
+\caption{ DQN with two layers used to model the agent }%
 \label{fig:Visualization}%
 \end{figure}
 %\vfill}
@@ -106,8 +110,6 @@ Q(s,a) \rightarrow A(s,a) + V(s)
 
 For our solutions, accuracy can be considered as consistency in getting more than 200 scores over a period of episodes. And efficiency would be how sooner we can get such weights for which the agent scores more than 200 scores. \\
 
-When we train for more number of episodes (low efficiency), we get high accuracy (drop between consecutive episodes is lesser). And vice versa, if we stop early, we are highly efficient but accuracy is lower.
+When we train for more number of episodes (low efficiency) we converge better and rewards are consistently better (more than 200), contributing to high accuracy(drop between consecutive episodes is lesser). But if we stop early(at 400 episodes) , we are highly efficient( but the accuracy is lower). It is evident from the smoothness in average rewards post 600 episodes (Tensorboard curve shown in Figure 6).
 
-\subsection{Optimization}
-\subsubsection{Exploration}
-To find out that actions which might be better then others, we use $\epsilon$ greedy policy. This policy behaves greedily most of the time, but chooses a random action with probability $\epsilon$. $\epsilon$ will be a hyper-parameter played with to make sure our agent learns fast enough while consistently performing better. REVIEW
+

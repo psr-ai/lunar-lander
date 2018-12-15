@@ -11,11 +11,11 @@ Command to run :\\
 cl run :brain.py :hyperparameters.py :main.py :agent.py :environment.py :memory.py  \
 \end{verbatim}
 \begin{verbatim}
-:weights_0450.hdf5 'python3 main.py --should_learn=False --agent=Dueling --initial_weights=weights_0450.hdf5' \
+:weights_0450.hdf5 'python3 main.py --should_learn=False --agent=Dueling  \
 \end{verbatim}
 
 \begin{verbatim}
--n Dueling-Log --request-docker-image prabhjotrai/openai-gym:v1 
+--initial_weights=weights_0450.hdf5' -n Dueling-Log --request-docker-image prabhjotrai/openai-gym:v1 
 \end{verbatim}
 
  

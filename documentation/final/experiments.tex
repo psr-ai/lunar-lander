@@ -31,10 +31,10 @@ We also compared our results with the ones on OpenAI Gym Leaderboard Wiki. In ge
 
 \subsection{Literature Review}
 
-Since the game of Lunar Lander is available on openAI gym platform, we came across various implementations of it online. We also found a wiki-driven leaderboard \citep{leaderboard} is available for a small amount of comparative benchmarks. We found Allan Reyes \citep{allanreyes} work to be well documented. Here the AI agent was trained using simple DQN. We started with the same approach of simple DQN, and after experimenting with hyperparameters we could achieve better results of getting reward of 200 within 525 episodes. Later two more algorithms Double DQN and Duel DQN further enhanced the results. So far stand 2nd place on the leaderboard.
+Since the game of Lunar Lander is available on openAI gym platform, we came across various implementations of it online. We also found a wiki-driven leaderboard \citep{leaderboard} is available for a small amount of comparative benchmarks. We found Allan Reyes \citep{allanreyes} work to be well documented. Here the AI agent was trained using simple DQN. We started with the same approach of simple DQN, and after experimenting with hyperparameters we could achieve better results of getting reward of 200 within 525 episodes. Later two more algorithms Double DQN and Duel DQN further enhanced the results. So far, we stand 2nd place on the leaderboard.
 
 \subsection{ Training}
-In the most proposed models an initial learning rate of $10^{-4}$ was used to initialize training. Adam Optimizer is used for full duration of number of episodes. All models can be trained within 30-40 mins on CPU as input to the neural network is a state vector. All the models were trained for 800 episodes with batch size of 32 or 64. The number of episodes was choosen based on covergence of the loss, while batch size was choosen to be relatively small to get the benefits of stochasticity. We tried different epsilon decay rates to get the best results.
+In the most proposed models an initial learning rate of $10^{-4}$ was used to initialize training. Adam Optimizer is used for full duration of number of episodes. All models can be trained within 30-40 mins on CPU as input to the neural network is a state vector. All the models were trained for 800 episodes with batch size of 32 or 64. The number of episodes was choosen based on covergence of the loss, while batch size was choosen to be relatively small to get the benefits of stochasticity. We tried different epsilon decay rates to get the best results (Set 4 in Table 2) .
 
 
 
@@ -43,6 +43,9 @@ In the most proposed models an initial learning rate of $10^{-4}$ was used to in
 -We tested with different learning rate of 0.01, 0.002, 0.005 and 0.001. We noticed our model gave best result with 0.001\\
 -We also tried different epsilon decay and got the best results at 0.995\\
 -We tried various combinations of batchsize(32, 64 and 128). Of all combinations, we saw best score with batch size of 64 across all models. 
+\\
+
+An agent with too high of a discount was unable to credit actions to success, far enough in the future. Simply put, it was too myopic. As a result, agents learned how to hover, but never learned how to land. We also observed effect of having smaller replay-memory size. Sometimes a drop in the rewards after model learns is because after many consecutive successes, the replay buffer won't have many failure cases to train on. So, it used to 'forget' how to recover from many failure cases.
 \\
 
 
@@ -77,7 +80,7 @@ Loss Function & MSE & MSE & MSE & MSE \\
 \hline
 Batch Size & $32$ & $32$  & $64$  & $64$  \\
 \hline
-Replay Memory Size & $2^16$ & $2^16$  & $2^16$  & $2^16$  \\
+Replay Memory Size & $2^{16}$ & $2^{16}$  & $2^{16}$  & $2^{16}$  \\
 \hline
 \end{tabular}
 \caption{Different set of hyper-parameters were tried}
@@ -89,7 +92,8 @@ Replay Memory Size & $2^16$ & $2^16$  & $2^16$  & $2^16$  \\
 However for some episodes after 435 the rewards were not consistently more than 200 for 100 iterations. This is due to the speed 
 which is not getting reduced to zero (end state) although Lander is in landing zone.  The lunar lander is trying to bring itself to a zero velocity state and it tries to do so by applying thrust in opposite direction of landing horizontal velocity. In process of doing this, it applies alternate thrust from left and right side but is not able to bring the lander to complete halt to end the episode. Thus reducing the overall rewards and increases the number of frames. We observed that rewards are less than 200 when number of frames reaches the maximum value(1000). The Lunar Lander needs to learn how not to apply alternate left and right thrust to bring itself to a halt, taking no action will be the best action in this state. \\
 
-Also, we observe the variation is more in DQN and Double DQN as compared to Dueling DQN. We got the best performance on Set 4 with Dueling DQN model.
+Also, we observe the variation is more in DQN and Double DQN as compared to Dueling DQN. We got the best performance on Set 4 with Dueling DQN model.From figure 5, we can see that the agent underperforms about 4 \% of the time. Basically for these 4 cases, the game terminates because we have reached max frame count value (1000). This loss can be attributed to some unexplored states,
+
 
 \begin{figure}[!ht]
 %\begin{figure}%
@@ -97,14 +101,19 @@ Also, we observe the variation is more in DQN and Double DQN as compared to Duel
 \centering
 \includegraphics[scale=0.50,width=0.50\columnwidth]{figures/Histogram.png}%
 \includegraphics[scale=0.50,width=0.50\columnwidth]{figures/Frames.png}%
-\caption{ Error Analysis : Distribution of scores for 100 episodes }%
+\caption{ Error Analysis : Distribution of scores for 100 episodes after the agent has learned }
+
 \label{fig:Error Analysis}%
 \end{figure}
 %\vfill}
 
 \subsection{ Comparision of DQN Variants}
 
-Comparision of learning for different variants of DQN. 
+Figure 6 shows comparison of different learning algorithms. The learning performance of baselines are also depicted in the same figure. From the figure, we can see that Dueling Network Architecture reaches the average reward 200 earlier than DQN and Double DQN, near episode number 450. \\
+
+After reaching the reward 200, the graph is getting closer to zero slope. This is also intuitive since after reward 200, the average reward doesn’t change much. \\
+
+Another thing evident from this is that the average reward for the random baseline fixes to a negative value after 600 episodes and there’s no much variation on average reward (although the reward for each episode varies significantly). \\
  
 \begin{figure}[!ht]
 %\begin{figure}%
@@ -142,7 +151,7 @@ Dueling DQN & $225$ & $435$ \\
 
 \subsection{ Model Evaluation}
 
-All aforementioned models are evaluated for 100 episodes for a fixed weights. \\  
+All aforementioned models are evaluated for 100 episodes for a fixed weights as shown in Figure 7(left side). \\  
 \begin{figure}[!ht]
 %\begin{figure}%
 %\vspace*{\fill}
@@ -157,5 +166,5 @@ All aforementioned models are evaluated for 100 episodes for a fixed weights. \\
 %\vfill}
 
 \subsection{ Agent on other Environments}
-We used the Agent to train on "CartPole-v1" game environment and were able to achieve good results. Our AI agent successfully learnt the game and consecutively won it. This proves the generality of the algorithm.
+We used the Agent to train on "CartPole-v1" game environment and were able to achieve good results. After Our AI agent successfully learnt the game as shown in Figure 7(right side) and consecutively won it. This proves the generality of the algorithm.
 
