@@ -4,12 +4,12 @@ self.__precacheManifest = [
     "url": "/lunar-lander/static/media/anime3.bd6820f1.png"
   },
   {
-    "revision": "80f50b593e28d207bea6",
+    "revision": "d21a4a4509847f8454db",
     "url": "/lunar-lander/static/css/main.1fc7824e.chunk.css"
   },
   {
-    "revision": "5987dd12fea78ce5f97ae601b08ec03c",
-    "url": "/lunar-lander/static/media/nucleo.5987dd12.woff2"
+    "revision": "b17a118e13e53558658b681a0ebdad82",
+    "url": "/lunar-lander/static/media/nucleo.b17a118e.ttf"
   },
   {
     "revision": "318cbd6e11cddefdf04b",
@@ -24,8 +24,8 @@ self.__precacheManifest = [
     "url": "/lunar-lander/static/media/react-logo.eb6be414.png"
   },
   {
-    "revision": "80f50b593e28d207bea6",
-    "url": "/lunar-lander/static/js/main.80f50b59.chunk.js"
+    "revision": "d21a4a4509847f8454db",
+    "url": "/lunar-lander/static/js/main.d21a4a45.chunk.js"
   },
   {
     "revision": "9fcf69e5359987c9b1545aae1c2c5faa",
@@ -36,19 +36,19 @@ self.__precacheManifest = [
     "url": "/lunar-lander/static/media/nucleo.f0b489a5.woff"
   },
   {
-    "revision": "03ef1918e505c3e3471f9369ef7a638f",
-    "url": "/lunar-lander/static/media/nucleo.03ef1918.eot"
+    "revision": "5987dd12fea78ce5f97ae601b08ec03c",
+    "url": "/lunar-lander/static/media/nucleo.5987dd12.woff2"
   },
   {
-    "revision": "b17a118e13e53558658b681a0ebdad82",
-    "url": "/lunar-lander/static/media/nucleo.b17a118e.ttf"
+    "revision": "03ef1918e505c3e3471f9369ef7a638f",
+    "url": "/lunar-lander/static/media/nucleo.03ef1918.eot"
   },
   {
     "revision": "318cbd6e11cddefdf04b",
     "url": "/lunar-lander/static/css/1.be6ed673.chunk.css"
   },
   {
-    "revision": "0f24c93fd4f40f0bf6190c3ef2fe85fc",
+    "revision": "59580be2f53b2de2ebb3ac909a52d8cc",
     "url": "/lunar-lander/index.html"
   }
 ];
