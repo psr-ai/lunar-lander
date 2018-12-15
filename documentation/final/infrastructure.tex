@@ -8,10 +8,10 @@ We have used the OpenAI gym \citep{openai} library to train our agent. Although 
 In this game, four discrete actions are available to the playing agent at any time frame: 
 
 \begin{enumerate}[label=(\alph*)]
-\item Do nothing
-\item Fire left orientation engine (rotates the lunar lander clockwise)
-\item Fire main engine (provides upward thrust)
-\item Fire right orientation engine (rotates the lunar lander anti-clockwise)
+\item  Do nothing 
+\item (b)Fire left orientation engine (rotates the lunar lander clockwise)
+\item (c) Fire main engine (provides upward thrust) 
+\item  Fire right orientation engine (rotates the lunar lander anti-clockwise) 
 \end{enumerate}
 
 The agent can choose only one action among the given actions at a given time frame.
@@ -19,33 +19,25 @@ The agent can choose only one action among the given actions at a given time fra
 \subsection{Terrain} 
 The terrain is a combination of 10 points, and the helipad(landing zone) is fixed between 5th and 6th points towards the center. The values of the height of the landing zone(5th and 6th points on the terrain) are viewport height divided by 4, and the rest of the points are randomly sampled between 0 to H/2 using \textit{numpy} random and smoothened (averaging 3 continuous points).
 
-\subsection{Initial State}
+\subsection{ State}
 
-The state is 8 dimensional values of different parameters of the lunar lander at any given time. The starting state is randomly initialized (the lunar lander takes a step in the world through the "idle" action) with certain bounds based on the environment.
-
-Inspecting code of open\_ai lunar lander, we see that the initial states are defined by simulating the environment in one frame (calling box world simulation using time step as $1/FPS$). Using this simulation, elaborating the initial state as follows:
+The state is 8 dimensional values of different parameters of the lunar lander at any given time. The starting state is randomly initialized (the lunar lander takes a step in the world through the "idle" action) with certain bounds based on the environment. The state space is as follows
 
 \begin{enumerate}
-\item Position X (Initial Position X: final x which changed from half of viewport width to a value after taking "idle" action before the simulation)
-\item Position Y (Initial Position Y: final y which changed from from the viewport height to a value after taking "idle" action before simulation)
-\item Velocity X (Initial Velocity X: final velocity x changed from 0 to a value after taking "idle" action before simulation)
-\item Velocity Y (Initial Velocity Y: final velocity y which changed from 0 to a value after taking "idle" action before simulation)
-\item Current lander angle (Initial lander angle: final lander angle after simulation on "idle" action from 0 degrees)
-\item Angular velocity (Initial angular velocity: final angular velocity after simulation on "idle" action from 0 angular velocity)
-\item Left leg contacted the surface (Initial value: False, since there's is no probability that the lunar lander's leg will touch the moon surface when at the top)
+\item Position of LunarLander w.r.t X-axis
+\item Position of LunarLander w.r.t Y-axis
+\item Velocity along X-axis 
+\item Velocity along Y-axis
+\item LunarLander Angle
+\item Angular velocity 
+\item Left leg contacted the surface (Initial value: False)
 \item Right leg contacted the surface (Initial value: False)
 \end{enumerate}
 
 \subsection{End State}
 
-The episode ends in the following scenarios:
+When the lunar lander stabilises on the landing surface (change in shape of lunar lander is constantly 0 for a number of frames and speed is 0). 
 
-\begin{enumerate}
-\item  When the lunar lander goes outside of the viewport bounds, the game is over with -100 is negative reward.
-\item  When the lunar lander touches the ground with a high velocity
-\item When the lunar lander touches the ground with body part except the legs
-\item When the lunar lander stabilises on the moon's surface (change in shape of lunar lander is constantly 0 for a number of frames)
-\end{enumerate}
 
 \subsection{Rewards and Transitions}
 

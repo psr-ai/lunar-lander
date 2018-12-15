@@ -1,45 +1,6 @@
 \section{Models and different Approaches}
-\subsection{Challenges}
-
-We dedicated time to understand how the openai-gym is working internally. For this specific problem, we understood how the rewards and environment is behaving on every episode, as described in infrastructure. Moreover, to get faster results, we focused on better machine and GPU settings on google cloud and getting docker environment setup for codalab and reproducibility across platforms.
-
-\subsection{Modelling the problem}
-
-Basic framework is defined in Fig 1. The agent performs action($a$) on the environment. Performing the action on the environment returns reward($r$) and new state $s'$. Our agent then incorporates this information.
-
-\begin{figure}[!ht]
-%\begin{figure}%
-%\vspace*{\fill}
-\centering
-\includegraphics[scale=0.25,width=0.25\columnwidth]{reinforcement_framework.png}%
-\caption{ Reinforcement Learning Framework}%
-\label{fig:Visualization}%
-\end{figure}
-%\vfill}
-
-In such a model, for our problem, here is quick description of notations:
-\begin{enumerate}
-\item $S$ is defined as all possible states, $s$ is one particular 8 dimensional state
-\item $A$ is defined as all possible actions, $a$ is one of the actions out of $[\text{idle}, \text{fire engine}, \text{rotate left}, \text{rotate right}]$
-\item $R$ is the reward distribution given $(s, a)$
-\item $P$ is the set of possible transitions and their probabilities given $(s, a)$
-\item $\gamma$: the discount factor. How much we want our agent to discount future reward. It is a hyperparameter that we define ourselves.
-\end{enumerate}
-
-Our model builds off of Q-learning algorithms by using a Deep Neural Network (DNN) for approximating the state-action Q-value, Q(s, a). 
-Given the state $s$, our goal is to identify a policy $\pi_{opt}$ that maps the states to actions in order to maximize the total reward we get.
-
-\begin{center}
-S $\rightarrow$ A based on $\pi_{opt}$
-\end{center}
-
-As we know, $Q$ value is defined as the expected reward that we get following action $a$ in a given state $s$ and then following the policy $\pi$, our objective is to define a $Q_{opt} (s, a)$, which can be maximised over all possible actions at a state $s$, in order to find the $\pi_{opt}$.
-
-\subsection{Algorithms and Equations}
-
-\subsubsection{DQN Introduction}
-
-Model-free based Deep Q Network algorithm was chosen specifically for the state size and complexity. DQN builds off of Q-learning algorithms by using a Deep Neural Network (DNN) for approximating the state-action value function, Q(s, a). Function Q(s, a) is defined such that for given state $s$ and action $a$ it returns an estimate of a total reward we would achieve starting at this state, taking the action and then following some policy. Let’s call the Q function for the optimal policies $Q_{opt}$.
+\subsection{Q-Learning and DQN }
+Q-Learning learns the action-value function Q(s,a) which gives us a measure of how good it is to take an action at a particular state. Function Q(s, a) is defined such that for given state $s$ and action $a$ it returns an estimate of a total reward we would achieve by taking the action. Let’s call the Q function for the optimal policies $Q_{opt}$.
  $Q_{opt}$ with discounting can be written as 
  \begin{equation}
 Q_{opt}(s,a) = r_{0} + \gamma r_{1} + \gamma^{2} r_{2} + ...
@@ -49,29 +10,37 @@ The above equation can be rewritten in a recursive form.
  \begin{equation}
 Q_{opt}(s,a) = r_{0} + \gamma max_{a}Q_{opt}(s',a)
 \end{equation}
-This equation is proven to converge to the desired $Q_{opt}$, with finite number of states and each of the state-action pair is presented repeatedly. However, the Lunar Lander state space is real and continuous. We cannot store infinite number of values for every possible state. Instead, we  approximate the Q function with a neural network. This network will take a state as an input and produce an estimation of the Q function for each action. This network with multiple layers is called Deep Q-network (DQN).
-\newline \newline
-\textbf{Experience Replay} \newline \newline
-During each simulation step, the agent perform an action $a$ in state $s$, receives immediate reward $r$ and come to a new state $s’$.
-\newline
-There are two problems with online learning - \newline
-1. The samples arrive in order they are experienced and as such are highly correlated. This might cause overfitting.
-\newline
-2. Throwing away each sample immediately after we use it. This means we are not using our experience effectively.
-\newline
-The key idea of 'experience replay' is that we store these $(s, a, r, s')$ transitions in a memory and during each learning step, sample a random batch and perform a gradient descend on it. This way we solve both issues.
-After reaching the finite allotted memory capacity, the oldest sample is discarded.
-\newline \newline
-\textbf{Exploration}
-To find out that actions which might be better then others, we use $\epsilon$ greedy policy. This policy behaves greedily most of the time, but chooses a random action with probability $\epsilon$. $\epsilon$ will be a hyper-parameter played with to make sure our agent learns fast enough while consistently performing better.
+This equation is proven to converge to the desired $Q_{opt}$, with finite number of states and each of the state-action pair is presented repeatedly.
 
-\subsubsection{Full DQN}
-In DQN algorithm we set targets for gradient descend as:
-\begin{equation}
-Q_{opt}(s,a) = r_{0} + \gamma max_{a}Q_{opt}(s',a)
-\end{equation}
-We see that the target depends on the current network. A neural network works as a whole, and so each update to a point in the Q function also influences whole area around that point. And the points of $Q(s, a)$ and $Q(s’, a)$ are very close together, because each sample describes a transition from $s$ to $s’$. This leads to a problem that with each update, the target is likely to shift. This can lead to instabilities, oscillations or divergence.
+In Q-Learning we build a memory table Q[s,a] to store Q-values for all the possible combinations of s and a. However, for Lunar Lander the combinations of state and actions are too large and continuos, the memory requirements for Q will be too high. To address this we switch to a deep Q network to approxiamate Q(s,a) using deep neural network.
+Model-free based Deep Q-learning Network algorithm was chosen specifically for the state size and complexity to approxiamate state-action value function, Q(s, a).
+\newline 
+
+\subsection{Challenges in RL }
+As compared to Supervised learning where samples are independent and identically distributed (i.i.d) using randomization among batches. This kind of stable condition for input and ouput ensures supervised model to perform well. In Reinforcement Learning , both the input and output are changing constantly during the training process and makes training unstable. Also, there is another problem related to the correlations i.e. while training we update model parameters to move Q(s,a) closer to ground truth (best action).  These parameter update will impact other estimations and cause overfitting.
+
+\subsection{Implementation Details for DQN}
+
+\subsubsection{Experience Replay}
+We put the last state transitions into a buffer memory and sample a mini-batch of samples(batch size)  from this buffer to train the deep network. This forms an input dataset which is stable enough for training. As we randomly sample from the replay buffer, the data is more independent of each other and closer to i.i.d. 
 \newline
+The key idea of 'experience replay' is that we store these $(s, a, r, s')$ transitions in a memory and during each learning step, sample a random batch and perform a gradient descend on it. 
+After reaching the finite allotted memory capacity, the oldest sample is discarded.
+\newline
+
+\subsubsection{Target Network}
+We create two deep networks. We use the first one to retrieve Q values while the second one includes all updates in the training. This network is a mere copy of the previous network, but frozen in time. It provides stable $\tilde{Q}$ values and allows the algorithm to converge to the specified target:
+\begin{equation}
+Q(s, a) \xrightarrow{} r + \gamma max_a \tilde{Q}(s', a)
+\end{equation}
+
+After several steps, the target network is updated, just by copying the weights from the current network. To be effective, the interval between updates has to be large enough to leave enough time for the original network to converge. \newline
+For lunar lander, we update target model after every episode.
+
+\subsection{Improvements to DQN}
+
+
+
 \begin{figure}[!ht]
 %\begin{figure}%
 %\vspace*{\fill}
@@ -82,13 +51,7 @@ We see that the target depends on the current network. A neural network works as
 \end{figure}
 %\vfill}
 
-To overcome this problem, researches proposed to use a separate target network for setting the targets. This network is a mere copy of the previous network, but frozen in time. It provides stable $\tilde{Q}$ values and allows the algorithm to converge to the specified target:
-\begin{equation}
-Q(s, a) \xrightarrow{} r + \gamma max_a \tilde{Q}(s', a)
-\end{equation}
-
-After several steps, the target network is updated, just by copying the weights from the current network. To be effective, the interval between updates has to be large enough to leave enough time for the original network to converge. \newline
-For lunar lander, we update target model after every episode.
+To overcome this problem, researches proposed to use a separate target network for setting the targets. From here on whenever we refer to DQN we mean Full DQN.
 
 \subsubsection{Double DQN}
 One problem in the DQN algorithm is that the agent tends to overestimate the Q function value, due to the max in the formula used to set targets.
@@ -113,47 +76,38 @@ Q(s, a) \xrightarrow{} r + \gamma \tilde{Q}(s', argmax_a Q(s', a))
 We could observe that Double DQN was more stable than Full DQN.
  
 \subsubsection{Dueling layer DQN}
-Q(s,a) represents the value of a given action $a$ chosen in state $s$, V(s) represents the value of the state independent of action. By definition, $V(s)=max_{a}Q(s,a)$. Thus, A(s,a) provides a relative measure of the utility of actions in s. The insight behind the dueling network architecture is that sometimes the exact choice of action does not matter so much, and so the state could be more explicitly modeled, independent of the action. There are two neural networks — one learns to provide an estimate of the value at every timestep, and the other calculates potential advantages of each action, and the two are combined for a single action-advantage Q function. We can achieve more robust estimates of state value by decoupling it from the necessity of being attached to specific actions.FIXME%\citep{Dueling}
+
+
+In Dueling DQN, Q is computed with a different formula below with value function V and a state-dependent action advantage function A below:
+
+\begin{equation}
+Q(s,a) \rightarrow V(s) + A(s,a) -\frac{1}{A} \sum_{a'}^{} A(s,a )
+\end{equation}
+
+Instead of learning Q, we used two separate heads to compute V and A.Our experiments show the performance improvements. DQN updates the Q-value function of a state for a specific action only. Dueling DQN updates V which other Q(s, a’) updates can take advantage of also. So each Dueling DQN training iteration is thought to have a larger impact.
+\\
+The insight behind the dueling network architecture is that sometimes the exact choice of action does not matter so much, and so the state could be more explicitly modeled, independent of the action. There are two neural networks — one learns to provide an estimate of the value at every timestep, and the other calculates potential advantages of each action, and the two are combined for a single action-advantage Q function. We can achieve more robust estimates of state value by decoupling it from the necessity of being attached to specific actions.\citep{Dueling}
 \newline
 \begin{equation}
 Q(s,a) \rightarrow A(s,a) + V(s)
 \end{equation}
-The above equation is unidentifiable in the sense that given $Q$
-we cannot recover $V$ and $A$ uniquely. This lack of identifiability is mirrored by poor practical performance when this equation is used directly. To address this issue of identifiability, we can force the advantage
-function estimator to have zero advantage at the
-chosen action. That is, we let the last module of the network
-implement the forward mapping.
-\begin{equation}
-Q(s,a; \theta, \alpha, \beta) \rightarrow V(s; \theta, \beta) + (A(s,a\theta, \alpha) - max_{a' \epsilon |A|} A(s,a';\theta,\alpha ))
-\end{equation}
-An alternative module replaces the max operator with an
-average. On the one hand this loses the original semantics of V and
-A because they are now off-target by a constant, but on
-the other hand it increases the stability of the optimization:
-with this following equation-
-\begin{equation}
-Q(s,a; \theta, \alpha, \beta) \rightarrow V(s; \theta, \beta) + (A(s,a\theta, \alpha) - \frac{1}{A} \sum_{a'}^{} A(s,a';\theta,\alpha ))
-\end{equation}
- the advantages (A) only need to change as fast as the
-mean, instead of having to compensate any change to the
-optimal action’s advantage in  (13)
-\newline
- 
- \subsection{Accuracy and Efficiency Trade-off}
+\newline 
+
+\begin{figure}[!ht]
+%\begin{figure}%
+%\vspace*{\fill}
+%\centering
+\includegraphics[scale=0.50,width=0.50\columnwidth]{figures/DuelingArch.png}%
+\caption{ DQN and Dueling DQN Architeture\citep{Dueling_Diagram}}%
+\label{fig:Dueling and DQN Architecture}%
+\end{figure}
+
+\subsection{Accuracy and Efficiency Trade-off}
 
 For our solutions, accuracy can be considered as consistency in getting more than 200 scores over a period of episodes. And efficiency would be how sooner we can get such weights for which the agent scores more than 200 scores. \\
 
 When we train for more number of episodes (low efficiency), we get high accuracy (drop between consecutive episodes is lesser). And vice versa, if we stop early, we are highly efficient but accuracy is lower.
 
-\subsection{Implementation choices}
-
-The choice of state was based on the actual configuration of the lunar lander, and we learnt weights for each feature in the state. Another choice could have been training on image data, feeding images per episode and learning on gained rewards. Since this would have been computationally expensive, we chose the former approach to explicit definition of state space and learning it's weights. \\
-
-For running different algorithms, we created separate classes so that the code is not only modularized, but can also be run easily on different openai environments, learning algorithms can be easily changed etc. Here's a quick description of different classes:
-
-\begin{enumerate}
-\item \textbf{Brain:} Class which contains keras models, updates the weights through train function and performs prediction based on learnt weights. 
-\item \textbf{Memory:} Class which appends observations until maximum memory length and samples based on given batch size hyperparameter
-\item \textbf{Agent:} Our agent class which explores and exploits based on fixed hyperparameters(gamma, epsilon max, epsilon min and decay) and passed arguments. This is also the class where we are performing the replay action and training the agent's brain instance. It also contains another instance of memory class which is used in replay while sampling.
-\item \textbf{Environment:} Class which runs the episode on given agent and asks the agent to observe and replay whenever the agent is trying to learn on episodes. It returns the information on how much reward was observed on each episode and for how long each episode ran
-\end{enumerate}
+\subsection{Optimization}
+\subsubsection{Exploration}
+To find out that actions which might be better then others, we use $\epsilon$ greedy policy. This policy behaves greedily most of the time, but chooses a random action with probability $\epsilon$. $\epsilon$ will be a hyper-parameter played with to make sure our agent learns fast enough while consistently performing better. REVIEW

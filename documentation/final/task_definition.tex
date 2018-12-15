@@ -1,7 +1,7 @@
 \section{Task Definition}
 \label{intro}
 
-The task accomplished by this project is to build an AI agent for the game of Lunar Lander defined by openAI gym in Box2D format. Here, a lunar lander needs to land with zero velocity between the flags on a landing pad as shown in the figure. with a constant high reward. This is accomplished by Reinforcement Learning, particularly by applying different Deep Q-learning techniques. This project has explored Full DQN\citep{DoubleQ-learning}, Double DQN\citep{DoubleQ-learning}, and Dueling DQN\citep{Dueling}, to solve the game. We have considered the game as solved when the agent starts getting an average reward of 200 over 100 consecutive episodes. Moreover, performances of different DQN variants are compared with baselines and oracle. \\
+The task accomplished by this project is to build an AI agent for the game of Lunar Lander defined by openAI gym in Box2D format. Here, a lunar lander needs to land with zero velocity between the flags on a landing pad as shown in the figure. with a constant high reward. This is accomplished by Reinforcement Learning, particularly by applying different Deep Q-learning techniques. This project has explored Full DQN\citep{DoubleQ-learning}, Double DQN\citep{DoubleQ-learning}, and Dueling DQN\citep{Dueling}, to solve the game. We consider the game as solved when the agent starts getting an average reward of 200 over 100 consecutive episodes. Moreover, the performance of different DQN variants are compared to solve the problem. \\
 
 
 \begin{figure}[!ht]
@@ -9,15 +9,14 @@ The task accomplished by this project is to build an AI agent for the game of Lu
 %\vspace*{\fill}
 \centering
 \includegraphics[scale=0.50,width=0.50\columnwidth]{figures/game.png}%
-\includegraphics[scale=0.35,width=0.35\columnwidth]{figures/game_env.png}%
-\caption{ Game Environment Screenshot}%
+\includegraphics[scale=0.50,width=0.50\columnwidth]{figures/game_env.png}%
+\caption{ Lunar Lander and Game Environment }%
 \label{fig:Visualization}%
 \end{figure}
 %\vfill}
 
-Since this problem involves high dimensional and continuous state
-space, standard Q-learning cannot solve this problem unless some amount of discretization is done. Due to above-mentioned difficulties, Deep Q-Network (DQN) was the choice. We plan to explore different variants of DQN (particularly DQN, Double DQN, and
-Dueling network architecture).
+Since, the problem involves high dimensional and continuous state
+space, standard Q-learning cannot solve this problem unless some amount of discretization is done. Due to this difficulty, Deep Q-Network (DQN) was the choice. 
 
 
 

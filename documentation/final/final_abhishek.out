@@ -2,28 +2,32 @@
 \BOOKMARK [1][-]{section.2}{Infrastructure}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Actions}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Terrain}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{Initial State}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.3}{ State}{section.2}% 5
 \BOOKMARK [2][-]{subsection.2.4}{End State}{section.2}% 6
 \BOOKMARK [2][-]{subsection.2.5}{Rewards and Transitions}{section.2}% 7
 \BOOKMARK [1][-]{section.3}{Models and different Approaches}{}% 8
-\BOOKMARK [2][-]{subsection.3.1}{Challenges}{section.3}% 9
-\BOOKMARK [2][-]{subsection.3.2}{Modelling the problem}{section.3}% 10
-\BOOKMARK [2][-]{subsection.3.3}{Algorithms and Equations}{section.3}% 11
-\BOOKMARK [3][-]{subsubsection.3.3.1}{DQN Introduction}{subsection.3.3}% 12
-\BOOKMARK [3][-]{subsubsection.3.3.2}{Full DQN}{subsection.3.3}% 13
-\BOOKMARK [3][-]{subsubsection.3.3.3}{Double DQN}{subsection.3.3}% 14
-\BOOKMARK [3][-]{subsubsection.3.3.4}{Dueling layer DQN}{subsection.3.3}% 15
-\BOOKMARK [2][-]{subsection.3.4}{Accuracy and Efficiency Trade-off}{section.3}% 16
-\BOOKMARK [2][-]{subsection.3.5}{Implementation choices}{section.3}% 17
-\BOOKMARK [1][-]{section.4}{Experiments and Evaluation}{}% 18
-\BOOKMARK [2][-]{subsection.4.1}{ Baselines}{section.4}% 19
-\BOOKMARK [2][-]{subsection.4.2}{Oracle}{section.4}% 20
-\BOOKMARK [2][-]{subsection.4.3}{Literature Review}{section.4}% 21
-\BOOKMARK [2][-]{subsection.4.4}{ Training}{section.4}% 22
-\BOOKMARK [2][-]{subsection.4.5}{ Hyperparameter Tuning}{section.4}% 23
-\BOOKMARK [2][-]{subsection.4.6}{ Error Analysis}{section.4}% 24
-\BOOKMARK [2][-]{subsection.4.7}{ Comparision of DQN Variants}{section.4}% 25
-\BOOKMARK [2][-]{subsection.4.8}{ Model Evaluation}{section.4}% 26
-\BOOKMARK [2][-]{subsection.4.9}{ Agent on other Environments}{section.4}% 27
-\BOOKMARK [1][-]{section.5}{Conclusion}{}% 28
-\BOOKMARK [1][-]{section.6}{Codalab Link}{}% 29
+\BOOKMARK [2][-]{subsection.3.1}{Q-Learning and DQN }{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.2}{Challenges in RL }{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.3}{Implementation Details for DQN}{section.3}% 11
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Experience Replay}{subsection.3.3}% 12
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Target Network}{subsection.3.3}% 13
+\BOOKMARK [2][-]{subsection.3.4}{Improvements to DQN}{section.3}% 14
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Double DQN}{subsection.3.4}% 15
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Dueling layer DQN}{subsection.3.4}% 16
+\BOOKMARK [2][-]{subsection.3.5}{Accuracy and Efficiency Trade-off}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.6}{Optimization}{section.3}% 18
+\BOOKMARK [3][-]{subsubsection.3.6.1}{Exploration}{subsection.3.6}% 19
+\BOOKMARK [1][-]{section.4}{Experiments and Evaluation}{}% 20
+\BOOKMARK [2][-]{subsection.4.1}{ Baselines}{section.4}% 21
+\BOOKMARK [2][-]{subsection.4.2}{Oracle}{section.4}% 22
+\BOOKMARK [2][-]{subsection.4.3}{Literature Review}{section.4}% 23
+\BOOKMARK [2][-]{subsection.4.4}{ Training}{section.4}% 24
+\BOOKMARK [2][-]{subsection.4.5}{ Hyperparameter Tuning}{section.4}% 25
+\BOOKMARK [2][-]{subsection.4.6}{ Error Analysis}{section.4}% 26
+\BOOKMARK [2][-]{subsection.4.7}{ Comparision of DQN Variants}{section.4}% 27
+\BOOKMARK [2][-]{subsection.4.8}{ Model Evaluation}{section.4}% 28
+\BOOKMARK [2][-]{subsection.4.9}{ Agent on other Environments}{section.4}% 29
+\BOOKMARK [1][-]{section.5}{Conclusion}{}% 30
+\BOOKMARK [1][-]{section.6}{Codalab Link}{}% 31
+\BOOKMARK [1][-]{section.7}{Appendix}{}% 32
+\BOOKMARK [2][-]{subsection.7.1}{Implementation choices}{section.7}% 33
