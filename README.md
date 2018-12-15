@@ -11,6 +11,9 @@ This is a part of our coursework at SCPD course CS221 at Stanford University. Vi
 4. Activate virtual env by `source venv/bin/activate`. This will activate the virtual env. Running python3 will open console with default dependencies from python.
 5. Install dependencies for this project by `pip3 install -r requirements.txt --no-cache`. This will install all the dependencies inside the python virtual environment.
 6. Note: Pip will have installed matpltlib, there's an issue with matpltlib with mac os. Follow the steps [here](https://stackoverflow.com/a/21789908/5159284) to fix this issue.
+7. If you see related related to "AttributeError: module '_Box2D' has no attribute 'RAND_LIMIT_swigconstant", execute 
+sudo pip uninstall box2d-py
+sudo pip install box2d-py; More details can be found [here](https://github.com/openai/gym/blob/box2dtests/.travis.yml#L20-L22)
 
 You are ready! We recommend using [pycharm community edition](https://www.jetbrains.com/pycharm/download/#section=mac). Once installed, follow the following steps to point project interpreter for pycharm:
 
