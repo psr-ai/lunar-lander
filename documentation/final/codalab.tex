@@ -5,13 +5,17 @@ https://worksheets.codalab.org/worksheets/0x1e3fc24cfa0d4ff3b492d0f47b6e0887/
  \\
 Command to run :\\
 
+
+
 \begin{verbatim}
 cl run :brain.py :hyperparameters.py :main.py :agent.py :environment.py :memory.py  \
 \end{verbatim}
 \begin{verbatim}
-initial_weights:0xc8fff4 'python3 main.py --should_learn=False --agent=Dueling \
+:weights_0450.hdf5 'python3 main.py --should_learn=False --agent=Dueling --initial_weights=weights_0450.hdf5' \
 \end{verbatim}
 
 \begin{verbatim}
---initial_weights=initial_weights' -n sort-run --request-docker-image prabhjotrai/openai-gym:v1
+-n Dueling-Log --request-docker-image prabhjotrai/openai-gym:v1 
 \end{verbatim}
+
+ 
