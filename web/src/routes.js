@@ -9,6 +9,14 @@ import UserProfile from "views/UserProfile.jsx";
 
 var routes = [
   {
+    path: "/overview",
+    name: "Overview",
+    rtlName: "طباعة",
+    icon: "tim-icons icon-align-center",
+    component: Typography,
+    layout: "/lunar-lander"
+  },
+  {
     path: "/performance",
     name: "Performance",
     rtlName: "الرموز",
