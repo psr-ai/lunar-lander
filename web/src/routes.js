@@ -13,28 +13,28 @@ var routes = [
     name: "Overview",
     icon: "tim-icons icon-align-center",
     component: Overview,
-    layout: "/lunar-lander"
+    layout: ""
   },
   {
     path: "/infra",
     name: "Infrastructure",
     icon: "tim-icons icon-puzzle-10",
     component: Infrastructure,
-    layout: "/lunar-lander"
+    layout: ""
   },
   {
     path: "/learning",
     name: "Learning",
     icon: "tim-icons icon-chart-pie-36",
     component: Learning,
-    layout: "/lunar-lander"
+    layout: ""
   },
   {
     path: "/performance",
     name: "Performance",
     icon: "tim-icons icon-atom",
     component: Performance,
-    layout: "/lunar-lander"
+    layout: ""
   }
 ];
 export default routes;

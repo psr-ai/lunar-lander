@@ -61,7 +61,7 @@ class Admin extends React.Component {
   };
   getRoutes = routes => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/lunar-lander") {
+      if (prop.layout === "") {
         return (
           <Route
             path={prop.layout + prop.path}
