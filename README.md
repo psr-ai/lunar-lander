@@ -1,7 +1,6 @@
-# Lunar Lander (CS221 Project)
+# Lunar Lander
 
 This project focuses on using reinforcement learning to achieve highest score in [LunarLander-v2](https://gym.openai.com/envs/LunarLander-v2/).
-This is a part of our coursework at SCPD course CS221 at Stanford University.
 
 ### Setup Instructions:
 
@@ -32,9 +31,8 @@ apt-get install libjpeg-dev cmake swig python-pyglet python3-opengl libboost-all
 
 Please follow the following guidelines to contribute.
 
-1. Do not commit on `master` directly, although everyone has permission.
-2. Create a new branch from `master`, make changes and open a PR.
-3. Get it reviewed by contributers and we merge it in collaboration.
+1. Create a new branch from `master`, make changes and open a PR.
+2. Get it reviewed by contributers and we merge it in collaboration.
 
 ### Contributors:
 
